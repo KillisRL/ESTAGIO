@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarbeariaMatutosApp.Views.pgAgendamentoServico"
+             Title="pgAgendamentoServico"
+             xmlns:viewmodel="clr-namespace:BarbeariaMatutosApp.ViewModels"
+              WidthRequest="400"
+HeightRequest="900">
+
+    <StackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Bem Vindo -"/>
+            <Label Text="{Binding Nome}"/>
+        </HorizontalStackLayout>
+    <ScrollView>
+        <Grid RowDefinitions="Auto, *, Auto">
+            <Label Text="Serviços Disponíveis"
+               Grid.Row="0"
+               HorizontalOptions="Center"
+               Margin="20"
+               FontSize="24"
+               FontAttributes="Bold"/>
+            <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Servicos}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding ServicoSelecionado}">
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="CenterAndExpand" IsVisible="{Binding IsBusy}">
+                        <ActivityIndicator IsRunning="{Binding IsBusy}" Color="Blue"/>
+                        <Label Text="Carregando serviços..."
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        
+                        <Frame CornerRadius="10"
+                           Margin="10"
+                           Padding="5"
+                           BackgroundColor="#f0f0f0"
+                           BorderColor="#ddd"
+                           HasShadow="True">
+                            <StackLayout>
+                                <StackLayout>
+                                <Label Text="{Binding DescServico}"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#333"/>
+                                <Label Text="{Binding Duracao, StringFormat='Duração: {0}'}"
+                                   FontSize="14"
+                                   TextColor="#666"/>
+                                <Label Text="{Binding ValorServico, StringFormat='Vsalor: R$ {0:F2}'}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="#007BFF"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+                    <StackLayout>
+                        <Button Grid.Row="2"
+                Text="Agendar Serviço"
+                Margin="20"
+                Command="{Binding AgendarServicoCommand}" />
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+    </StackLayout>
+</ContentPage>

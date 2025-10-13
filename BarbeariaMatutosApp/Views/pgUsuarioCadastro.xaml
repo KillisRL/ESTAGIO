@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarbeariaMatutosApp.Views.pgUsuarioCadastro"
+             Title="pgUsuarioCadastro"
+              WidthRequest="400"
+                HeightRequest="900">
+    
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Entry x:Name="txtNome" Placeholder="Nome do Usuário"/>
+        <Entry x:Name="txtEmail" Placeholder="Email"/>
+        <Entry x:Name="txtTelefone" Placeholder="Telefone" Keyboard="Numeric" TextChanged="TxtTelefone_TextChanged"/>
+        <Entry x:Name="txtSenha" Placeholder="Senha" IsPassword="True"/>
+
+        <Button Text="Cadastrar"
+             BackgroundColor="DodgerBlue"
+             TextColor="White"
+             Clicked="btnCadastrar_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>

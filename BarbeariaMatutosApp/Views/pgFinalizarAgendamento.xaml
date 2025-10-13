@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarbeariaMatutosApp.Views.pgFinalizarAgendamento"
+             Title="Finalizar Agendamento"
+             xmlns:vm="clr-namespace:BarbeariaMatutosApp.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:DataType="vm:FinalizarAgendamentoViewModel"
+              WidthRequest="400"
+              HeightRequest="900">
+
+    
+    <VerticalStackLayout Spacing="15" Padding="20">
+        <Label Text="Você está agendando o serviço" FontSize="Title" FontAttributes="Bold"/>
+
+        <HorizontalStackLayout>
+            <Label Text="Serviço: " FontSize="Title" Margin="0,0,5,0"/>
+            <Label Text="{Binding Servico.DescServico}" FontSize="Medium" FontAttributes="Bold" />
+        </HorizontalStackLayout>
+
+        <Label Text="{Binding Servico.ValorServico, StringFormat='Valor: R$ {0:F2}'}" FontSize="Medium" />
+        <HorizontalStackLayout>
+            <Label Text="Duraçao: " FontSize="Title" Margin="0,0,5,0"/>
+            <Label Text="{Binding Servico.Duracao}" FontSize="Medium" FontAttributes="Bold"/>
+        </HorizontalStackLayout>
+        
+        <Picker Title="Selecione um Barbeiro"
+                ItemsSource="{Binding Barbeiros}"
+                ItemDisplayBinding="{Binding NomeBarbeiro}"
+                SelectedItem="{Binding BarbeiroSelecionado}" />
+
+        <Label Text="Escolha a data:" Margin="0,10,0,0" />
+        <DatePicker Date="{Binding DataSelecionada}" />
+
+        <Label Text="Escolha a hora:" Margin="0,10,0,0" />
+        <TimePicker Time="{Binding HoraSelecionada}" />
+
+        <Button Text="Confirmar Agendamento"
+                Command="{Binding FinalizarAgendamentoCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                Margin="0,20,0,0" />
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,6 @@
+@BarbeariaMatutosAPI_HostAddress = http://localhost:5125
+
+GET {{BarbeariaMatutosAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
