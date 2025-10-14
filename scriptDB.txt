@@ -1,0 +1,82 @@
+-- Use o banco de dados 'DbBarbearia'
+USE DbBarbearia;
+GO
+
+-- -----------------------------------------------------
+-- Tabela `tblAgendamentoSituacao`
+-- -----------------------------------------------------
+CREATE TABLE [dbo].[tblAgendamentoSituacao] (
+    [IdSituacao] INT NOT NULL,
+    [DescSitucao] VARCHAR(50) NULL,
+    PRIMARY KEY CLUSTERED ([IdSituacao] ASC)
+);
+GO
+
+-- -----------------------------------------------------
+-- Tabela `tblBarbeiro`
+-- -----------------------------------------------------
+CREATE TABLE [dbo].[tblBarbeiro] (
+    [IdBarbeiro] INT NOT NULL,
+    [NomeBarbeiro] VARCHAR(200) NULL,
+    [Ativo] BIT NULL,
+    PRIMARY KEY CLUSTERED ([IdBarbeiro] ASC)
+);
+GO
+
+-- -----------------------------------------------------
+-- Tabela `tblServicos`
+-- -----------------------------------------------------
+CREATE TABLE [dbo].[tblServicos] (
+    [IdServico] INT NOT NULL,
+    [DescServico] VARCHAR(200) NULL,
+    [Duracao] VARCHAR(100) NULL,
+    [ValorServico] DECIMAL(7, 2) NULL,
+    PRIMARY KEY CLUSTERED ([IdServico] ASC)
+);
+GO
+
+-- -----------------------------------------------------
+-- Tabela `tblUsuario`
+-- -----------------------------------------------------
+CREATE TABLE [dbo].[tblUsuario] (
+    [IDUsuario] INT IDENTITY(1,1) NOT NULL,
+    [Nome] VARCHAR(200) NOT NULL,
+    [Email] VARCHAR(200) NOT NULL UNIQUE,
+    [SenhaHash] VARCHAR(255) NOT NULL,
+    [Telefone] VARCHAR(20) NOT NULL,
+    PRIMARY KEY CLUSTERED ([IDUsuario] ASC)
+);
+GO
+
+-- -----------------------------------------------------
+-- Tabela `tblAgendamento`
+-- -----------------------------------------------------
+CREATE TABLE [dbo].[tblAgendamento] (
+    [IdAgendamento] INT IDENTITY(1,1) NOT NULL,
+    [IdBarbeiro] INT NOT NULL,
+    [IdServico] INT NOT NULL,
+    [DataHora] DATETIME NULL,
+    [IdSituacao] INT NOT NULL DEFAULT 2,
+    [IDUsuario] INT NOT NULL DEFAULT 1,
+    PRIMARY KEY CLUSTERED ([IdAgendamento] ASC)
+);
+GO
+
+-- -----------------------------------------------------
+-- Restrições e Chaves Estrangeiras (`Foreign Keys`)
+-- -----------------------------------------------------
+ALTER TABLE [dbo].[tblAgendamento] ADD CONSTRAINT FK_Agendamento_Barbeiro
+    FOREIGN KEY ([IdBarbeiro]) REFERENCES [dbo].[tblBarbeiro] ([IdBarbeiro]);
+GO
+
+ALTER TABLE [dbo].[tblAgendamento] ADD CONSTRAINT FK_Agendamento_Servicos
+    FOREIGN KEY ([IdServico]) REFERENCES [dbo].[tblServicos] ([IdServico]);
+GO
+
+ALTER TABLE [dbo].[tblAgendamento] ADD CONSTRAINT FK_Agendamento_Situacao
+    FOREIGN KEY ([IdSituacao]) REFERENCES [dbo].[tblAgendamentoSituacao] ([IdSituacao]);
+GO
+
+ALTER TABLE [dbo].[tblAgendamento] ADD CONSTRAINT FK_Agendamento_Usuario
+    FOREIGN KEY ([IDUsuario]) REFERENCES [dbo].[tblUsuario] ([IDUsuario]);
+GO
