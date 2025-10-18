@@ -26,6 +26,21 @@ namespace BarbeariaMatutosApp.Services
             // Supondo que você tenha um endpoint para barbeiros
             return await _httpClient.GetFromJsonAsync<List<Barbeiro>>("api/Agendamentos/Barbeiros");
         }
+        public async Task<List<AgendamentoDTO>> GetAgendamentoAsync()
+        {
+            try
+            {
+                // Agora esperamos uma lista do tipo AgendamentoDto
+                var agendamentos = await _httpClient.GetFromJsonAsync<List<AgendamentoDTO>>("api/Agendamentos/consulta");
+                return agendamentos ?? new List<AgendamentoDTO>();
+            }
+            catch (Exception ex)
+            {
+                // Adicione um log para depuração
+                Debug.WriteLine($"Erro ao buscar agendamentos: {ex.Message}");
+                return new List<AgendamentoDTO>(); // Retorna uma lista vazia em caso de erro
+            }
+        }
 
         public async Task<bool> SalvarAgendamentoAsync(CriarAgendamentoDTO agendamentoRequest)
         {

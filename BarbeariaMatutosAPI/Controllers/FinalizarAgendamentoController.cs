@@ -42,23 +42,70 @@ namespace BarbeariaMatutosAPI.Controllers
 
             _db.Agendamentos.Add(novoAgendamento);
             await _db.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetAgendamentoPorId), new { id = novoAgendamento.IdAgendamento }, novoAgendamento);
+            return CreatedAtAction(nameof(ConsultarAgendamento), new { id = novoAgendamento.IdAgendamento }, novoAgendamento);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("consulta")]
+        public async Task<IActionResult> ConsultarAgendamento()
+        {
+            try { 
+            var agendamento = await _db.Agendamentos
+                .Include(a => a.Barbeiro)
+                .Include(a => a.Servico)
+                .Include(a => a.Users)
+                .Include(a => a.AgendamentoSituacao)
+
+                .Select(a => new
+                {
+                    a.IdAgendamento,
+                    a.IdServico,
+                    DescServico = a.Servico.DescServico,
+                    a.DataHora,
+                    a.IdBarbeiro,
+                    NomeBarbeiro = a.Barbeiro.NomeBarbeiro,
+                    a.IDUsuario,
+                    NomeUsuario = a.Users.Nome,
+                    Email = a.Users.Email,
+                    IdSituacao = a.IdSituacao,
+                    DescSituacao = a.AgendamentoSituacao.DescSituacao
+                }).ToListAsync();
+                return Ok(agendamento);
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, $"Erro interno ao buscar agendamentos: {ex.Message}");
+            }
+        }
+        [HttpGet("consulta/{id:int}")]
         public async Task<IActionResult> GetAgendamentoPorId(int id)
         {
             var agendamento = await _db.Agendamentos
-                                 .Include(a => a.Barbeiro.IdBarbeiro)
-                                 .Include(a => a.Servico.IdServico)
-                                 .FirstOrDefaultAsync(a => a.IdAgendamento == id);
+                .Include(a => a.Barbeiro)
+                .Include(a => a.Servico)
+                .Include(a => a.Users)
+                .Include(a => a.AgendamentoSituacao)
+                .Select(a => new
+                {
+                    a.IdAgendamento,
+                    a.IdServico,
+                    DescServico = a.Servico.DescServico,
+                    a.DataHora,
+                    a.IdBarbeiro,
+                    NomeBarbeiro = a.Barbeiro.NomeBarbeiro,
+                    a.IDUsuario,
+                    NomeUsuario = a.Users.Nome,
+                    Email = a.Users.Email,
+                    IdSituacao = a.IdSituacao,
+                    DescSituacao = a.AgendamentoSituacao.DescSituacao
+                })
+                .FirstOrDefaultAsync(a => a.IdAgendamento == id); // <--- AQUI ESTÁ O WHERE
 
             if (agendamento == null)
             {
-                return NotFound(); // Retorna 404 se não encontrar
+                return NotFound($"Agendamento com ID {id} não encontrado.");
             }
 
-            return Ok(agendamento); // Retorna 200 com o agendamento encontrado
+            return Ok(agendamento);
         }
     }
 }
