@@ -13,7 +13,7 @@ namespace UsersDomain.Entidades
     {
         [Key]
         public int IdBarbeiro  {get; set; }
-        public string NomeBarbeiro { get; set; }
+        public string? NomeBarbeiro { get; set; }
         public bool Ativo { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace UsersDomain.Entidades
         public int IdBarbeiro { get; set; }
         public int IdServico { get; set; }
         public int IDUsuario { get; set; }
+        public int IdSituacao { get; set; }
 
         [ForeignKey("IdBarbeiro")]
         public Barbeiro? Barbeiro { get; set; }
@@ -29,6 +30,7 @@ namespace UsersDomain.Entidades
          [ForeignKey("IDUsuario")]
          public Users? Users { get; set; }
 
-        public int IdSituacao { get; set; }
+        [ForeignKey("IdSituacao")]
+        public AgendamentoSituacao AgendamentoSituacao { get; set; }
     }
 }

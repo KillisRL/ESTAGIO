@@ -21,15 +21,18 @@ public static class MauiProgram
 			});
 		//SERVIÇOS
 		builder.Services.AddSingleton<ApiServices>();
-		//VIEWMODELS
+        builder.Services.AddSingleton<HttpClient>();
+        //VIEWMODELS
         builder.Services.AddTransient<FinalizarAgendamentoViewModel>();
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<AgendamentoServicoViewModel>();
+        builder.Services.AddSingleton<ConsultarAgendamentoViewModel>();
 
-		//VIEWS
+        //VIEWS
         builder.Services.AddTransient<pgFinalizarAgendamento>();
         builder.Services.AddTransient<pgUsuarioCadastro>();
         builder.Services.AddTransient<pgAgendamentoServico>();
+        builder.Services.AddSingleton<pgConsultarAgendamento>();
 
 
 #if DEBUG
