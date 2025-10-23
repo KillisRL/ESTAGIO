@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using UsersDomain.Entidades;
 using UsersInfraestrutura;
@@ -106,6 +108,44 @@ namespace BarbeariaMatutosAPI.Controllers
             }
 
             return Ok(agendamento);
+        }
+
+        [HttpGet("meus-agendamentos/{userId:int}")] // <-- REMOVA o "/{userId:int}" daqui
+        public async Task<IActionResult> ConsultarMeusAgendamentos(int userId) // <-- Método continua sem parâmetros
+        {
+            try
+            {
+
+                // A consulta usa o IDUsuario obtido das Claims
+                var agendamentos = await _db.Agendamentos
+                    .Include(a => a.Barbeiro)
+                    .Include(a => a.Servico)
+                    .Include(a => a.Users)
+                    .Include(a => a.AgendamentoSituacao)
+                    .Where(a => a.IDUsuario == userId) // Filtro pelo usuário logado
+                    .Select(a => new
+                    {
+                        a.IdAgendamento,
+                        a.IdServico,
+                        DescServico = a.Servico.DescServico,
+                        a.DataHora,
+                        a.IdBarbeiro,
+                        NomeBarbeiro = a.Barbeiro.NomeBarbeiro,
+                        a.IDUsuario,
+                        NomeUsuario = a.Users.Nome,
+                        Email = a.Users.Email,
+                        IdSituacao = a.IdSituacao,
+                        DescSituacao = a.AgendamentoSituacao.DescSituacao
+                    })
+                    .OrderByDescending(a => a.DataHora)
+                    .ToListAsync();
+
+                return Ok(agendamentos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno ao buscar seus agendamentos: {ex.Message}");
+            }
         }
     }
 }

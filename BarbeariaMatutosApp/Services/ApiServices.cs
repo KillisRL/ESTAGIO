@@ -41,7 +41,22 @@ namespace BarbeariaMatutosApp.Services
                 return new List<AgendamentoDTO>(); // Retorna uma lista vazia em caso de erro
             }
         }
-
+        public async Task<List<AgendamentoDTO>> GetMeusAgendamentosAsync(int userId) // Recebe o ID
+        {
+            try
+            {
+                string apiUrl = $"api/Agendamentos/meus-agendamentos/{userId}"; // Usa o ID na URL
+                var response = await _httpClient.GetAsync(apiUrl);
+                response.EnsureSuccessStatusCode(); // Verifica se a API retornou sucesso (2xx)
+                var agendamentos = await response.Content.ReadFromJsonAsync<List<AgendamentoDTO>>();
+                return agendamentos ?? new List<AgendamentoDTO>();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro ao buscar 'meus' agendamentos para usuário {userId}: {ex.Message}");
+                return new List<AgendamentoDTO>();
+            }
+        }
         public async Task<bool> SalvarAgendamentoAsync(CriarAgendamentoDTO agendamentoRequest)
         {
             try
@@ -59,34 +74,6 @@ namespace BarbeariaMatutosApp.Services
                 return false;
             }
         }
-
-        //public async Task<(bool Sucesso, string Erro)> Login(string email, string senha)
-        //{
-        //    try
-        //    {
-        //        var loginRequest = new { SenhaHash = senha, Email = email };
-        //        var response = await _httpClient.PostAsJsonAsync("User/login", loginRequest);
-
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            // Se o login der certo, talvez você queira receber um token ou dados do usuário.
-        //            // Por enquanto, vamos apenas retornar sucesso.
-        //            return (true, null);
-        //        }
-        //        else
-        //        {
-        //            // Se a API retornar um erro (ex: senha errada), lemos a mensagem de erro.
-        //            var erro = await response.Content.ReadAsStringAsync();
-        //            return (false, erro);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Se houver um erro de conexão/rede.
-        //        Debug.WriteLine($"Erro de conexão no login: {ex.Message}");
-        //        return (false, $"Erro de conexão: {ex.Message}");
-        //    }
-        //}
         public async Task<(Users usuario, string erro)> Login(string email, string senha)
         {
             // 1. Mudamos o retorno para <(Usuario usuario, string erro)>

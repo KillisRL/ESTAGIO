@@ -27,12 +27,14 @@ public static class MauiProgram
         builder.Services.AddTransient<LoginViewModel>();
         builder.Services.AddTransient<AgendamentoServicoViewModel>();
         builder.Services.AddSingleton<ConsultarAgendamentoViewModel>();
+        builder.Services.AddTransient<PrincipalViewModel>();
 
         //VIEWS
         builder.Services.AddTransient<pgFinalizarAgendamento>();
         builder.Services.AddTransient<pgUsuarioCadastro>();
         builder.Services.AddTransient<pgAgendamentoServico>();
         builder.Services.AddSingleton<pgConsultarAgendamento>();
+        builder.Services.AddTransient<pgPrincipal>();
 
 
 #if DEBUG

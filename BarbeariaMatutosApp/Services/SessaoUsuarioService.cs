@@ -5,7 +5,7 @@ namespace BarbeariaMatutosApp.Services
 {
     public static class SessaoUsuarioService
     {
-        public static Users Usuariologado { get; set; }
+        public static Users? Usuariologado { get; set; }
         public static void IniciarSessao(Users users)
         {
             Usuariologado = users;
