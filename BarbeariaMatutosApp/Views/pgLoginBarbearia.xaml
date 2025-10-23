@@ -23,7 +23,7 @@
 
                     <Label Text="Senha:"/>
                     <Entry Placeholder="Senha" 
-                           Text="{Binding Senha}" 
+                           Text="{Binding Senha}"
                            IsPassword="{Binding MostrarSenha, Converter={StaticResource InvertBool}}" />
 
                     <StackLayout Orientation="Horizontal">

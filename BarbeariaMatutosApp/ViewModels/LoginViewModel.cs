@@ -46,7 +46,7 @@ namespace BarbeariaMatutosApp.ViewModels
                 Email = string.Empty;
 
 
-                await Shell.Current.GoToAsync(nameof(pgAgendamentoServico));
+                await Shell.Current.GoToAsync(nameof(pgPrincipal));
             }
             else
             {

@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BarbeariaMatutosApp.ViewModels"
              x:Class="BarbeariaMatutosApp.Views.pgPrincipal"
-             Title="pgPrincipal">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:views="clr-namespace:BarbeariaMatutosApp.Views"
+             Title="pgPrincipal"
+             WidthRequest="400"
+             HeightRequest="900">
+
+        <VerticalStackLayout Spacing="20" Padding="30">
+        <HorizontalStackLayout HorizontalOptions="Start">
+            <Label Text="{Binding Nome, StringFormat='Bem-Vindo: {0}'}"
+                   FontAttributes="Bold"
+                   FontSize="Subtitle"/>
+        </HorizontalStackLayout>
+
+        <Label Text="BARBEARIA MATUTOS" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Title"/>
+
+        <Button Text="Agendamento de Serviço"
+                        Command="{Binding AbrirViewCommand}"
+                        CommandParameter="{x:Type TypeName=views:pgAgendamentoServico}">
+        </Button>
+
+            <Button Text="Consultar Agendamento"
+                        Command="{Binding AbrirViewCommand}"
+                        CommandParameter="{x:Type TypeName=views:pgConsultarAgendamento}" />
+
+        </VerticalStackLayout>
 </ContentPage>

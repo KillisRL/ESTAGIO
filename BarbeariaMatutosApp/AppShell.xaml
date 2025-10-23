@@ -10,7 +10,7 @@
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate view:pgConsultarAgendamento}"
+        ContentTemplate="{DataTemplate view:pgLoginBarbearia}"
         Route="MainPage" />
 
 </Shell>

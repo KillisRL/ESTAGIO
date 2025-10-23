@@ -29,28 +29,35 @@ namespace BarbeariaMatutosApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task CarregarAgendamento()
+        private async Task CarregarAgendamentosAsync() 
         {
-            if (IsBusy)
-                return;
+            if (IsBusy) return;
+            int? userId = SessaoUsuarioService.Usuariologado?.IDUsuario;
+
+            if (!userId.HasValue) 
+            {
+                Debug.WriteLine("Usuário não logado, não é possível carregar agendamentos.");
+                await Shell.Current.DisplayAlert("Erro", "Você precisa estar logado para ver seus agendamentos.", "OK");
+                return; 
+            }
             try
             {
                 IsBusy = true;
-                var agendamentoapi = await _apiServices.GetAgendamentoAsync();
+                // Chama o método da ApiService passando o ID
+                var agendamentoapi = await _apiServices.GetMeusAgendamentosAsync(userId.Value);
 
-                if(agendamentoapi?.Any() == true)
+                if (agendamentoapi?.Any() == true)
                 {
-                    agendamentos.Clear();
+                    Agendamentos.Clear();
                     foreach (var agendamento in agendamentoapi)
                     {
                         Agendamentos.Add(agendamento);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Erro no ViewModel: {ex.Message}");
-                await Shell.Current.DisplayAlert("Erro", "Não foi possível carregar os agendamentos", "OK");
+                else
+                {
+                    Agendamentos.Clear(); 
+                }
             }
             finally
             {

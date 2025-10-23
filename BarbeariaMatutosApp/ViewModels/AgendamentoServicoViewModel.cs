@@ -13,10 +13,10 @@ namespace BarbeariaMatutosApp.ViewModels
         private const string ApiBaseURL = "http://localhost:5125";
 
         [ObservableProperty]
-        private string nome;
+        private string? nome;
 
         [ObservableProperty]
-        private int idUsuario;
+        private int? idUsuario;
 
         [ObservableProperty]
         private ObservableCollection<Servicos> servicos;

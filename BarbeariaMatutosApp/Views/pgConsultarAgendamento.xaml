@@ -4,7 +4,9 @@
              x:Class="BarbeariaMatutosApp.Views.pgConsultarAgendamento"
              xmlns:viewmodel="clr-namespace:BarbeariaMatutosApp.ViewModels"
              BackgroundColor="#1E1E1E"
-             Title="Meus Agendamentos">
+             Title="Meus Agendamentos"
+             WidthRequest="400"
+                HeightRequest="900">
     <Grid RowDefinitions="Auto, *">
 
         <Label Grid.Row="0"
@@ -40,23 +42,47 @@
                         <Grid RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="*, Auto" RowSpacing="5">
 
                             <StackLayout Grid.Row="0" Grid.Column="0">
-                                <Label Text="{Binding DescServico}"
+
+                                <Label Text="{Binding DescServico, StringFormat='Serviço: {0}'}"
                                        FontSize="18"
                                        FontAttributes="Bold"
                                        TextColor="#007bff"/>
-                                <Label Text="{Binding NomeBarbeiro, StringFormat='Barbeiro: {0}'}"
-                                       FontSize="14"
-                                       TextColor="#BBBBBB"/>
+
                             </StackLayout>
-
                             <Label Grid.Row="0" Grid.Column="1"
-                                   Text="{Binding DescSituacao}"
-                                   FontAttributes="Bold"
-                                   TextColor="LightGreen"
-                                   HorizontalOptions="End"
-                                   VerticalOptions="Center"/>
+                                       Text="{Binding DescSituacao}"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="Center">
+                                <Label.Style>
+                                    <Style TargetType="Label">
+                                        <Setter Property="TextColor" Value="Gray"/>
+                                        <Style.Triggers>
+                                            <DataTrigger TargetType="Label"
+                                                             Binding="{Binding DescSituacao}"
+                                                             Value="Aberto">
+                                                <Setter Property="TextColor" Value="Blue"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label"
+                                                             Binding="{Binding DescSituacao}"
+                                                             Value="Cancelado">
+                                                <Setter Property="TextColor" Value="Red"/>
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Label"
+                                                             Binding="{Binding DescSituacao}"
+                                                             Value="Finalizado">
+                                                <Setter Property="TextColor" Value="LightGreen"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
 
-                            <StackLayout Grid.Row="1" Grid.ColumnSpan="2" Margin="0, 5, 0, 0">
+                                    </Style>
+                                </Label.Style>
+                            </Label>
+                            <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Margin="0, 5, 0, 0">
+                                <Label Text="{Binding NomeBarbeiro, StringFormat='Barbeiro: {0}'}"
+                                    FontSize="14"
+                                    Grid.Row="1" Grid.Column="0"
+                                    TextColor="#BBBBBB"/>
                                 <Label Text="{Binding DataHora, StringFormat='Data e Hora: {0:dd/MM/yyyy HH:mm}'}"
                                        FontSize="14"
                                        TextColor="#CCCCCC"/>
