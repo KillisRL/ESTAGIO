@@ -8,12 +8,21 @@ using System.Threading.Tasks;
 
 namespace UsersDomain.Entidades
 {
-    [Table ("tblBarbeiro")]
+    [Table("tblBarbeiro")]
     public class Barbeiro
     {
         [Key]
-        public int IdBarbeiro  {get; set; }
-        public string? NomeBarbeiro { get; set; }
-        public bool Ativo { get; set; }
+        public int IdBarbeiro { get; set; } 
+
+        public string? NomeBarbeiro { get; set; } // Coluna para o nome (baseado no script SQL original)
+        public bool? Ativo { get; set; } // Recomendado manter anuláve
+
+        public string? Login { get; set; }
+
+        public string? Senha { get; set; }
+
+        [Required]
+        [Column("IdPessoaTipo")] // Mapeia explicitamente para a coluna do banco
+        public TipoUsuario IdPessoaTipo { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace UsersDomain.Entidades
         public string Email { get; set; }
         public string Telefone { get; set; }
         public string SenhaHash { get; set; }
+        public TipoUsuario IdPessoaTipo { get; set; }
     }
 }

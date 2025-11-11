@@ -15,7 +15,7 @@ public partial class pgConsultarAgendamento : ContentPage
         base.OnAppearing();
         if (BindingContext is ConsultarAgendamentoViewModel viewModel)
         {
-            await viewModel.CarregarAgendamentoCommand.ExecuteAsync(null);
+            await viewModel.CarregarAgendamentosCommand.ExecuteAsync(null);
         }
     }
 }

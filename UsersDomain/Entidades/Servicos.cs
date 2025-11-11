@@ -13,8 +13,8 @@ namespace UsersDomain.Entidades
     {
         [Key]
         public int IdServico { get; set; }
-        public string DescServico { get; set; }
-        public string Duracao { get; set; }
+        public string? DescServico { get; set; }
+        public string? Duracao { get; set; }
         public decimal ValorServico { get; set; }
     }
 }

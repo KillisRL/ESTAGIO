@@ -50,7 +50,7 @@ HeightRequest="900">
                                 <Label Text="{Binding Duracao, StringFormat='Duração: {0}'}"
                                    FontSize="14"
                                    TextColor="#666"/>
-                                <Label Text="{Binding ValorServico, StringFormat='Vsalor: R$ {0:F2}'}"
+                                <Label Text="{Binding ValorServico, StringFormat='Valor: R$ {0:F2}'}"
                                    FontSize="16"
                                    FontAttributes="Bold"
                                    TextColor="#007BFF"/>

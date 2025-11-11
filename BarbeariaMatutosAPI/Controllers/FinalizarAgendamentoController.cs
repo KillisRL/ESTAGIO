@@ -4,6 +4,7 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using UsersDomain.Entidades;
 using UsersInfraestrutura;
+using static UsersDomain.Entidades.SituacaoAgendamentoEnum;
 namespace BarbeariaMatutosAPI.Controllers
 {
 
@@ -123,6 +124,69 @@ namespace BarbeariaMatutosAPI.Controllers
                     .Include(a => a.Users)
                     .Include(a => a.AgendamentoSituacao)
                     .Where(a => a.IDUsuario == userId) // Filtro pelo usuário logado
+                    .Select(a => new
+                    {
+                        a.IdAgendamento,
+                        a.IdServico,
+                        DescServico = a.Servico.DescServico,
+                        a.DataHora,
+                        a.IdBarbeiro,
+                        NomeBarbeiro = a.Barbeiro.NomeBarbeiro,
+                        a.IDUsuario,
+                        NomeUsuario = a.Users.Nome,
+                        Email = a.Users.Email,
+                        IdSituacao = a.IdSituacao,
+                        DescSituacao = a.AgendamentoSituacao.DescSituacao
+                    })
+                    .OrderByDescending(a => a.DataHora)
+                    .ToListAsync();
+
+                return Ok(agendamentos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro interno ao buscar seus agendamentos: {ex.Message}");
+            }
+        }
+        [HttpPatch("cancelarAgendamento/{agendamentoId:int}")]
+        public async Task<IActionResult> CancelarAgendamento(int agendamentoId) // Nome do parâmetro corrigido para corresponder à rota
+        {
+            try
+            {
+                var agendamento = await _db.Agendamentos //isso serve para selecionar o agendamento passado por parametro
+                                           .FirstOrDefaultAsync(a => a.IdAgendamento == agendamentoId);
+                if (agendamento == null)
+                {
+                    return NotFound($"Agendamento com ID {agendamentoId} não encontrado."); // Retorna 404 Not Found
+                }
+                agendamento.IdSituacao = (int)StatusAgendamento.Cancelado;
+                await _db.SaveChangesAsync();
+
+                // 5. Retorna uma resposta de sucesso sem conteúdo (padrão para PATCH/PUT bem-sucedido)
+                return NoContent(); // Retorna 204 No Content
+
+            }
+            catch (Exception ex)
+            {
+                // Retorna um erro interno do servidor em caso de falha
+                return StatusCode(500, $"Erro interno ao cancelar o agendamento: {ex.Message}");
+            }
+        }
+        //http para que o barbeiro logado possa visualizar seus atendimentos
+        [HttpGet("meus-servicos/{IdBarbeiro:int}")] // <-- REMOVA o "/{userId:int}" daqui
+        public async Task<IActionResult> ConsultarMeusServicos(int IdBarbeiro) // <-- Método continua sem parâmetros
+        {
+            try
+            {
+
+
+                // A consulta usa o IDUsuario obtido das Claims
+                var agendamentos = await _db.Agendamentos
+                    .Include(a => a.Barbeiro)
+                    .Include(a => a.Servico)
+                    .Include(a => a.Users)
+                    .Include(a => a.AgendamentoSituacao)
+                    .Where(a => a.IdBarbeiro == IdBarbeiro) // Filtro pelo usuário logado
                     .Select(a => new
                     {
                         a.IdAgendamento,

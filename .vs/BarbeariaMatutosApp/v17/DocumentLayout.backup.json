@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\views\\pgconsultaragendamento.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgconsultaragendamento.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\viewmodels\\consultaragendamentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\viewmodels\\consultaragendamentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\services\\apiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\services\\apiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3D891D96-DF09-40E4-8FED-D406A220FD92}|BarbeariaMatutosAPI\\BarbeariaMatutosAPI.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapi\\controllers\\finalizaragendamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3D891D96-DF09-40E4-8FED-D406A220FD92}|BarbeariaMatutosAPI\\BarbeariaMatutosAPI.csproj|solutionrelative:barbeariamatutosapi\\controllers\\finalizaragendamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\views\\pgconsultarservicos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgconsultarservicos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\viewmodels\\consultarservicosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\viewmodels\\consultarservicosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\views\\pgconsultarservicos.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgconsultarservicos.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,60 +25,86 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 203,
+          "DockedHeight": 187,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "pgConsultarAgendamento.xaml",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarAgendamento.xaml",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarAgendamento.xaml",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarAgendamento.xaml",
-              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarAgendamento.xaml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-22T00:23:08.744Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ConsultarAgendamentoViewModel.cs",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarAgendamentoViewModel.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\ConsultarAgendamentoViewModel.cs",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarAgendamentoViewModel.cs",
-              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\ConsultarAgendamentoViewModel.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAYwC4AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T00:18:27.725Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApiServices.cs",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "RelativeToolTip": "BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAIAwwC8AAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T00:17:35.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "FinalizarAgendamentoController.cs",
               "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
               "RelativeDocumentMoniker": "BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
               "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
               "RelativeToolTip": "BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
-              "ViewState": "AgIAAHQAAAAAAAAAAAAgwG8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAswKEAAABKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-22T00:16:11.03Z",
+              "WhenOpened": "2025-11-11T00:27:28.832Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pgConsultarServicos.xaml.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T00:10:12.443Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "pgConsultarServicos.xaml",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAiwG0AAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-11T00:08:31.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ConsultarServicosViewModel.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAjwD8AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T00:08:25.505Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 96,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a0c5197d-0ac7-4b63-97cd-8872a789d233}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{21457f7c-a428-477e-ae6d-e2b608734650}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

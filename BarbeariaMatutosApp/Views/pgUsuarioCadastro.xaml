@@ -2,20 +2,72 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarbeariaMatutosApp.Views.pgUsuarioCadastro"
-             Title="pgUsuarioCadastro"
-              WidthRequest="400"
-                HeightRequest="900">
-    
-    <VerticalStackLayout Padding="20" Spacing="15">
+             Title="Crie sua Conta"
+             BackgroundColor="#1E1E1E"
+             HeightRequest="900"
+             WidthRequest="400">
+    <ContentPage.Resources>
+        <Style x:Key="FormLabelStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#E0E0E0"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0,10,0,5"/>
+        </Style>
 
-        <Entry x:Name="txtNome" Placeholder="Nome do Usuário"/>
-        <Entry x:Name="txtEmail" Placeholder="Email"/>
-        <Entry x:Name="txtTelefone" Placeholder="Telefone" Keyboard="Numeric" TextChanged="TxtTelefone_TextChanged"/>
-        <Entry x:Name="txtSenha" Placeholder="Senha" IsPassword="True"/>
+        <Style x:Key="FormEntryStyle" TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="#333333"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="PlaceholderColor" Value="#AAAAAA"/>
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+    </ContentPage.Resources>
 
-        <Button Text="Cadastrar"
-             BackgroundColor="DodgerBlue"
-             TextColor="White"
-             Clicked="btnCadastrar_Clicked"/>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="5" VerticalOptions="Center">
+
+            <Label 
+                Text="Criar Conta"
+                FontSize="32"
+                FontAttributes="Bold"
+                TextColor="White"
+                HorizontalOptions="Center"
+                Margin="0,0,0,25"/>
+
+            <Label Text="Nome Completo" Style="{StaticResource FormLabelStyle}"/>
+            <Entry x:Name="txtNome" 
+                   Placeholder="Digite seu nome" 
+                   Style="{StaticResource FormEntryStyle}"/>
+
+            <Label Text="E-mail" Style="{StaticResource FormLabelStyle}"/>
+            <Entry x:Name="txtEmail" 
+                   Placeholder="seuemail@exemplo.com" 
+                   Keyboard="Email" 
+                   Style="{StaticResource FormEntryStyle}"/>
+
+            <Label Text="Telefone (WhatsApp)" Style="{StaticResource FormLabelStyle}"/>
+            <Entry x:Name="txtTelefone" 
+                   Placeholder="(XX) XXXXX-XXXX" 
+                   Keyboard="Numeric" 
+                   TextChanged="TxtTelefone_TextChanged" 
+                   MaxLength="11" 
+                   Style="{StaticResource FormEntryStyle}"/>
+
+            <Label Text="Senha" Style="{StaticResource FormLabelStyle}"/>
+            <Entry x:Name="txtSenha" 
+                   Placeholder="••••••••" 
+                   IsPassword="True" 
+                   Style="{StaticResource FormEntryStyle}"/>
+
+            <Button Text="Cadastrar"
+                    Clicked="btnCadastrar_Clicked"
+                    BackgroundColor="#007bff" 
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HeightRequest="55"
+                    CornerRadius="10"
+                    Margin="0,30,0,0"
+                    HorizontalOptions="Fill"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

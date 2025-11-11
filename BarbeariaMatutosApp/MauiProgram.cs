@@ -28,6 +28,7 @@ public static class MauiProgram
         builder.Services.AddTransient<AgendamentoServicoViewModel>();
         builder.Services.AddSingleton<ConsultarAgendamentoViewModel>();
         builder.Services.AddTransient<PrincipalViewModel>();
+        builder.Services.AddTransient<ConsultarServicosViewModel>();
 
         //VIEWS
         builder.Services.AddTransient<pgFinalizarAgendamento>();
@@ -35,6 +36,9 @@ public static class MauiProgram
         builder.Services.AddTransient<pgAgendamentoServico>();
         builder.Services.AddSingleton<pgConsultarAgendamento>();
         builder.Services.AddTransient<pgPrincipal>();
+        builder.Services.AddTransient<pgLoginBarbeiro>();
+        builder.Services.AddTransient<pgConsultarServicos>();
+
 
 
 #if DEBUG
