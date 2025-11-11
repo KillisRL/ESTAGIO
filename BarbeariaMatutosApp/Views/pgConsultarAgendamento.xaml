@@ -18,7 +18,8 @@
 
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Agendamentos}"
-                        SelectionMode="None"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding AgendamentoSelecionado}"
                         Margin="10, 0">
 
             <CollectionView.EmptyView>
@@ -43,10 +44,10 @@
 
                             <StackLayout Grid.Row="0" Grid.Column="0">
 
-                                <Label Text="{Binding DescServico, StringFormat='Serviço: {0}'}"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       TextColor="#007bff"/>
+                                <Label Text="{Binding IdAgendamento, StringFormat='Agendamento: {0}'}"
+                                        FontSize="18"
+                                        FontAttributes="Bold"
+                                        TextColor="#007bff"/>
 
                             </StackLayout>
                             <Label Grid.Row="0" Grid.Column="1"
@@ -79,6 +80,10 @@
                                 </Label.Style>
                             </Label>
                             <StackLayout Grid.Row="2" Grid.ColumnSpan="2" Margin="0, 5, 0, 0">
+                                <Label Text="{Binding DescServico, StringFormat='Serviço: {0}'}"
+                                    FontSize="14"
+                                    Grid.Row="1" Grid.Column="0"
+                                    TextColor="#BBBBBB"/>
                                 <Label Text="{Binding NomeBarbeiro, StringFormat='Barbeiro: {0}'}"
                                     FontSize="14"
                                     Grid.Row="1" Grid.Column="0"
@@ -89,7 +94,17 @@
                                 <Label Text="{Binding NomeUsuario, StringFormat='Cliente: {0}'}"
                                        FontSize="14"
                                        TextColor="#CCCCCC"/>
+
                             </StackLayout>
+
+                            <HorizontalStackLayout  Grid.Row="2" Grid.ColumnSpan="2" Margin="0, 5, 0, 0" HorizontalOptions="End">
+                                <Button Text="Cancelar"
+                                        TextColor="Red"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:ConsultarAgendamentoViewModel}}, Path=CancelarAgendamentoCommand}"
+                                        CommandParameter="{Binding .}"
+                                        HeightRequest="13"
+                                        WidthRequest="100"/>
+                            </HorizontalStackLayout>
 
                         </Grid>
                     </Frame>

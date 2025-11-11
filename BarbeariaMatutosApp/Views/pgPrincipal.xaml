@@ -26,5 +26,10 @@
                         Command="{Binding AbrirViewCommand}"
                         CommandParameter="{x:Type TypeName=views:pgConsultarAgendamento}" />
 
-        </VerticalStackLayout>
+        <Button Text="Consultar Serviços"
+                      Command="{Binding ConsultarServicosCommand}"
+                      CommandParameter="{x:Type TypeName=views:pgConsultarServicos}" />
+
+
+    </VerticalStackLayout>
 </ContentPage>

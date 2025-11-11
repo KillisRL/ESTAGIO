@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
+using System.Reflection.Emit;
+using UsersDomain.Entidades;
 
 namespace UsersInfraestrutura
 {

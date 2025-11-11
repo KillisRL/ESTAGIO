@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace UsersDomain.Entidades
 {
-    [Table ("tblAgendamento") ]
+    [Table("tblAgendamento")]
     public class Agendamento
     {
         [Key]
@@ -27,10 +27,10 @@ namespace UsersDomain.Entidades
 
         public DateTime DataHora { get; set; }
 
-         [ForeignKey("IDUsuario")]
-         public Users? Users { get; set; }
+        [ForeignKey("IDUsuario")]
+        public Users? Users { get; set; }
 
         [ForeignKey("IdSituacao")]
-        public AgendamentoSituacao AgendamentoSituacao { get; set; }
+        public AgendamentoSituacao? AgendamentoSituacao { get; set; }
     }
 }

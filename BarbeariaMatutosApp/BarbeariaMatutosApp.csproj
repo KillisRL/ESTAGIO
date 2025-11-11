@@ -79,13 +79,16 @@
 	  <MauiXaml Update="Views\pgConsultarAgendamento.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\pgConsultarServicos.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\pgFinalizarAgendamento.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\pgHome.xaml">
+	  <MauiXaml Update="Views\pgLoginBarbearia.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\pgLoginBarbearia.xaml">
+	  <MauiXaml Update="Views\pgLoginBarbeiro.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\pgPrincipal.xaml">

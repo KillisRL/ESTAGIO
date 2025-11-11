@@ -39,7 +39,8 @@ namespace BarbeariaMatutosAPI.Controllers
                 Nome = userCreate.Nome,
                 Email = userCreate.Email,
                 Telefone = userCreate.Telefone,
-                SenhaHash = userCreate.SenhaHash
+                SenhaHash = userCreate.SenhaHash,
+                IdPessoaTipo = userCreate.IdPessoaTipo,
             };
 
             _db.Users.Add(user);
@@ -61,6 +62,21 @@ namespace BarbeariaMatutosAPI.Controllers
             }
 
             return Ok(user);
+        }
+
+        [HttpPost("login/barbeiro")]
+        public async Task<IActionResult> LoginBarbeiro([FromBody] BarbeiroLoginDTO login)
+        {
+            // Procura o usuário no banco
+            var barbeiro = await _db.Barbeiros
+                .FirstOrDefaultAsync(u => u.Login == login.Login && u.Senha == login.Senha);
+
+            if (barbeiro == null)
+            {
+                return Unauthorized(new { Message = "Login ou senha inválidos!" });
+            }
+
+            return Ok(barbeiro);
         }
     }
 }

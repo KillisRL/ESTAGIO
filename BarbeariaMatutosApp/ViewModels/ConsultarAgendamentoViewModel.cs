@@ -15,6 +15,8 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty]
         private ObservableCollection<AgendamentoDTO> agendamentos;
 
+        [ObservableProperty]
+        private AgendamentoDTO? agendamentoSelecionado;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]
@@ -64,6 +66,56 @@ namespace BarbeariaMatutosApp.ViewModels
                 IsBusy = false;
             }
         }
+        [RelayCommand]
+        private async Task CancelarAgendamentoAsync() // Nome corrigido
+        {
+            // Verifica se há um agendamento selecionado
+            if (agendamentoSelecionado == null)
+            {
+                await Shell.Current.DisplayAlert("Atenção", "Selecione um agendamento para cancelar.", "OK");
+                return;
+            }
+            if(agendamentoSelecionado.IdSituacao == 3 || agendamentoSelecionado.IdSituacao ==2)
+            {
+                await Shell.Current.DisplayAlert("Atenção", "Só é possível cancelar serviços na situação 'Aberto'.", "OK");
+                return;
+            }
 
+            // Pede confirmação ao usuário
+            bool confirmar = await Shell.Current.DisplayAlert("Confirmar Cancelamento",
+                $"Tem certeza que deseja cancelar o agendamento {agendamentoSelecionado.IdAgendamento} do dia {agendamentoSelecionado.DataHora:dd/MM/yyyy HH:mm}?",
+                "Sim", "Não");
+
+            if (!confirmar)
+                return; // Usuário cancelou a ação
+
+            try
+            {
+                // Pega o ID (sem .Value)
+                int idAgendamento = agendamentoSelecionado.IdAgendamento;
+
+                // Chama a API e armazena o resultado booleano
+                bool sucesso = await _apiServices.CancelarAgendamentoAsync(idAgendamento);
+
+                // Verifica o resultado da operação
+                if (sucesso)
+                {
+                    await Shell.Current.DisplayAlert("Sucesso", "Agendamento cancelado.", "OK");
+
+                    await CarregarAgendamentosAsync(); 
+
+                    agendamentoSelecionado = null; // Limpa a seleção
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Erro", "Não foi possível cancelar o agendamento. Tente novamente.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro ao cancelar agendamento: {ex.Message}");
+                await Shell.Current.DisplayAlert("Erro", "Ocorreu um erro inesperado ao tentar cancelar.", "OK");
+            }
+        }
     }
 }

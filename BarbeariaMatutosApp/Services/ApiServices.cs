@@ -57,6 +57,51 @@ namespace BarbeariaMatutosApp.Services
                 return new List<AgendamentoDTO>();
             }
         }
+
+        public async Task<List<AgendamentoDTO>> GetMeusServicosAsync(int IdBarbeiro) // Recebe o ID
+        {
+            try
+            {
+                string apiUrl = $"api/Agendamentos/meus-agendamentos/{IdBarbeiro}"; // Usa o ID na URL
+                var response = await _httpClient.GetAsync(apiUrl);
+                response.EnsureSuccessStatusCode(); // Verifica se a API retornou sucesso (2xx)
+                var agendamentos = await response.Content.ReadFromJsonAsync<List<AgendamentoDTO>>();
+                return agendamentos ?? new List<AgendamentoDTO>();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro ao buscar 'meus' agendamentos para usuário {IdBarbeiro}: {ex.Message}");
+                return new List<AgendamentoDTO>();
+            }
+        }
+        public async Task<bool> CancelarAgendamentoAsync(int agendamentoId) // Retorna bool indicando sucesso
+        {
+            try
+            {
+                string apiUrl = $"api/Agendamentos/cancelarAgendamento/{agendamentoId}";
+
+                var request = new HttpRequestMessage(HttpMethod.Patch, apiUrl);
+
+                var response = await _httpClient.SendAsync(request);
+
+                if (response.IsSuccessStatusCode) // Verifica 200 OK, 204 No Content, etc.
+                {
+                    return true; // Sucesso
+                }
+                else
+                {
+                    // Log do erro vindo da API (opcional)
+                    var errorContent = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"Falha ao cancelar agendamento {agendamentoId}. Status: {response.StatusCode}, Resposta: {errorContent}");
+                    return false; // Falha
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro ao tentar cancelar agendamento {agendamentoId}: {ex.Message}");
+                return false; // Falha na comunicação
+            }
+        }
         public async Task<bool> SalvarAgendamentoAsync(CriarAgendamentoDTO agendamentoRequest)
         {
             try
@@ -89,6 +134,38 @@ namespace BarbeariaMatutosApp.Services
 
                     // 3. Retornamos o objeto do usuário e um erro nulo
                     return (usuarioLogado, null);
+                }
+                else
+                {
+                    var erro = await response.Content.ReadAsStringAsync();
+
+                    // 4. Retornamos um usuário nulo e a mensagem de erro
+                    return (null, erro);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro de conexão no login: {ex.Message}");
+                // 5. Em caso de exceção, também retornamos um usuário nulo
+                return (null, $"Erro de conexão: {ex.Message}");
+            }
+        }
+
+        public async Task<(Barbeiro barbeiro, string erro)> LoginBarbeiro(string login, string senha)
+        {
+            // 1. Mudamos o retorno para <(Usuario usuario, string erro)>
+            try
+            {
+                var loginRequest = new { Senha = senha, Login = login };
+                var response = await _httpClient.PostAsJsonAsync("User/login/barbeiro", loginRequest);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // 2. Lemos o corpo da resposta e transformamos em um objeto Usuario
+                    Barbeiro barbeiro= await response.Content.ReadFromJsonAsync<Barbeiro>();
+
+                    // 3. Retornamos o objeto do usuário e um erro nulo
+                    return (barbeiro, null);
                 }
                 else
                 {

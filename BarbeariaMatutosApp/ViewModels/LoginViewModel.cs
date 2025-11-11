@@ -8,7 +8,7 @@ using UsersDomain.Entidades;
 
 namespace BarbeariaMatutosApp.ViewModels
 {
-    public partial class LoginViewModel : ObservableObject
+    public partial class LoginViewModel : BaseViewModel
     {
         private readonly ApiServices apiService;
 
@@ -17,6 +17,12 @@ namespace BarbeariaMatutosApp.ViewModels
 
         [ObservableProperty]
         private string? senha;
+
+        [ObservableProperty]
+        private string? login;
+
+        [ObservableProperty]
+        private string? senhabarbeiro;
 
         // Construtor agora recebe ApiServices
         public LoginViewModel(ApiServices service)
@@ -58,6 +64,36 @@ namespace BarbeariaMatutosApp.ViewModels
         private async Task IrParaCadastroAsync()
         {
             await Shell.Current.GoToAsync(nameof(pgUsuarioCadastro));
+        }
+
+        [RelayCommand]
+        private async Task LoginBarbeiroAsync()
+        {
+            if (string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Senhabarbeiro))
+            {
+                await App.Current.MainPage.DisplayAlert("Atenção", "Por favor, preencha o login e a senha.", "OK");
+                return;
+            }
+
+            // A LÓGICA COMPLEXA FOI SUBSTITUÍDA POR UMA ÚNICA CHAMADA DE SERVIÇO!
+            var (barbeiro, erro) = await apiService.LoginBarbeiro(Login, Senhabarbeiro);
+
+            if (barbeiro != null)
+            {
+                SessaoUsuarioService.IniciarSessaoBarbeiro(barbeiro);
+
+                await App.Current.MainPage.DisplayAlert("Sucesso", $"Bem-vindo, {barbeiro.NomeBarbeiro}!", "OK");
+
+                Login = string.Empty;
+                Senhabarbeiro = string.Empty;
+
+
+                await Shell.Current.GoToAsync(nameof(pgPrincipal));
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Erro", $"Motivo: {erro}", "OK");
+            }
         }
     }
 }

@@ -1,4 +1,6 @@
+using UsersDomain;
 using System.Net.Http.Json;
+using UsersDomain.Entidades;
 
 namespace BarbeariaMatutosApp.Views;
 
@@ -20,7 +22,9 @@ public partial class pgUsuarioCadastro : ContentPage
             Nome = txtNome.Text,
             Email = txtEmail.Text,
             Telefone = txtTelefone.Text,
-            SenhaHash = txtSenha.Text
+            SenhaHash = txtSenha.Text,
+            IdPessoaTipo = (int)TipoUsuario.Cliente
+
         };
 
         try

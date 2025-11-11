@@ -9,7 +9,12 @@ using System.Threading.Tasks;
 
 namespace BarbeariaMatutosApp.ViewModels
 {
-    public partial class BaseNotifyViewModel : ObservableObject
+    public partial class BaseNotifyViewModel : ObservableObject, IDisposable
     {
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
+
 }
