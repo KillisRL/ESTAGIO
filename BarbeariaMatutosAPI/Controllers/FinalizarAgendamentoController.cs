@@ -148,28 +148,37 @@ namespace BarbeariaMatutosAPI.Controllers
                 return StatusCode(500, $"Erro interno ao buscar seus agendamentos: {ex.Message}");
             }
         }
-        [HttpPatch("cancelarAgendamento/{agendamentoId:int}")]
-        public async Task<IActionResult> CancelarAgendamento(int agendamentoId) // Nome do parâmetro corrigido para corresponder à rota
+        [HttpPatch("AlterarStatus/{agendamentoId:int}")]
+        public async Task<IActionResult> AlterarStatusAgendamento(
+             int agendamentoId,
+             [FromBody] AlterarStatusRequestDto request) // 1. Recebe o DTO do corpo
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
-                var agendamento = await _db.Agendamentos //isso serve para selecionar o agendamento passado por parametro
+
+                var agendamento = await _db.Agendamentos
                                            .FirstOrDefaultAsync(a => a.IdAgendamento == agendamentoId);
+
                 if (agendamento == null)
                 {
-                    return NotFound($"Agendamento com ID {agendamentoId} não encontrado."); // Retorna 404 Not Found
+                    return NotFound($"Agendamento com ID {agendamentoId} não encontrado.");
                 }
-                agendamento.IdSituacao = (int)StatusAgendamento.Cancelado;
+                agendamento.IdSituacao = request.NovoStatusId;
+                // ---------------------------
+
                 await _db.SaveChangesAsync();
 
-                // 5. Retorna uma resposta de sucesso sem conteúdo (padrão para PATCH/PUT bem-sucedido)
-                return NoContent(); // Retorna 204 No Content
-
+                return NoContent(); // Sucesso (204)
             }
             catch (Exception ex)
             {
-                // Retorna um erro interno do servidor em caso de falha
-                return StatusCode(500, $"Erro interno ao cancelar o agendamento: {ex.Message}");
+                // Mensagem de erro atualizada
+                return StatusCode(500, $"Erro interno ao alterar o status do agendamento: {ex.Message}");
             }
         }
         //http para que o barbeiro logado possa visualizar seus atendimentos

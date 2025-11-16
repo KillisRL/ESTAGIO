@@ -1,90 +1,48 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\",
+  "WorkspaceRootPath": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3D891D96-DF09-40E4-8FED-D406A220FD92}|BarbeariaMatutosAPI\\BarbeariaMatutosAPI.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapi\\controllers\\finalizaragendamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3D891D96-DF09-40E4-8FED-D406A220FD92}|BarbeariaMatutosAPI\\BarbeariaMatutosAPI.csproj|solutionrelative:barbeariamatutosapi\\controllers\\finalizaragendamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\views\\pgprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\views\\pgconsultarservicos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\views\\pgconsultarservicos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgconsultarservicos.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\viewmodels\\consultarservicosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3D891D96-DF09-40E4-8FED-D406A220FD92}|BarbeariaMatutosAPI\\BarbeariaMatutosAPI.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapi\\controllers\\finalizaragendamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3D891D96-DF09-40E4-8FED-D406A220FD92}|BarbeariaMatutosAPI\\BarbeariaMatutosAPI.csproj|solutionrelative:barbeariamatutosapi\\controllers\\finalizaragendamentocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\viewmodels\\consultarservicosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\viewmodels\\consultarservicosviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariamatutosapp\\estagio\\barbeariamatutosapp\\views\\pgconsultarservicos.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\services\\apiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\services\\apiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\views\\pgconsultarservicos.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgconsultarservicos.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\views\\pgprincipal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgprincipal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\maui\\barbeariaapp\\estagio\\estagio\\barbeariamatutosapp\\viewmodels\\principalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\viewmodels\\principalviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
-      "Orientation": 1,
+      "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedHeight": 187,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "FinalizarAgendamentoController.cs",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
-              "RelativeToolTip": "BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAswKEAAABKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T00:27:28.832Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "pgConsultarServicos.xaml.cs",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
-              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T00:10:12.443Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "pgConsultarServicos.xaml",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
-              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAiwG0AAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-11-11T00:08:31.315Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ConsultarServicosViewModel.cs",
-              "DocumentMoniker": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
-              "ToolTip": "C:\\MAUI\\BarbeariaMatutosApp\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
-              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAjwD8AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T00:08:25.505Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedHeight": 96,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -105,6 +63,110 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FinalizarAgendamentoController.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
+              "RelativeToolTip": "BarbeariaMatutosAPI\\Controllers\\FinalizarAgendamentoController.cs",
+              "ViewState": "AgIAAKwAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T11:51:03.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ApiServices.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Services\\ApiServices.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Services\\ApiServices.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Services\\ApiServices.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Services\\ApiServices.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAswEgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T11:49:10.652Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "pgConsultarServicos.xaml",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-16T11:45:44.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "pgPrincipal.xaml.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgPrincipal.xaml.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgPrincipal.xaml.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgPrincipal.xaml.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgPrincipal.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T11:45:37.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ConsultarServicosViewModel.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\ConsultarServicosViewModel.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwEwAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T11:42:41.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "pgConsultarServicos.xaml.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgConsultarServicos.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T11:41:21.127Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PrincipalViewModel.cs",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\PrincipalViewModel.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\PrincipalViewModel.cs",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\PrincipalViewModel.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\PrincipalViewModel.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-16T11:37:16.492Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "pgPrincipal.xaml",
+              "DocumentMoniker": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "ToolTip": "C:\\MAUI\\BarbeariaAPP\\ESTAGIO\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-16T11:36:16.685Z",
+              "EditorCaption": ""
             }
           ]
         }

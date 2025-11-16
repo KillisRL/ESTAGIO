@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Net.Http.Json;
 using UsersDomain.Entidades;
+using static UsersDomain.Entidades.SituacaoAgendamentoEnum;
 
 namespace BarbeariaMatutosApp.Services
 {
@@ -62,7 +63,7 @@ namespace BarbeariaMatutosApp.Services
         {
             try
             {
-                string apiUrl = $"api/Agendamentos/meus-agendamentos/{IdBarbeiro}"; // Usa o ID na URL
+                string apiUrl = $"api/Agendamentos/meus-servicos/{IdBarbeiro}"; // Usa o ID na URL
                 var response = await _httpClient.GetAsync(apiUrl);
                 response.EnsureSuccessStatusCode(); // Verifica se a API retornou sucesso (2xx)
                 var agendamentos = await response.Content.ReadFromJsonAsync<List<AgendamentoDTO>>();
@@ -74,33 +75,29 @@ namespace BarbeariaMatutosApp.Services
                 return new List<AgendamentoDTO>();
             }
         }
-        public async Task<bool> CancelarAgendamentoAsync(int agendamentoId) // Retorna bool indicando sucesso
+        private async Task<bool> AlterarStatusAsync(int agendamentoId, int novoStatusId)
         {
-            try
-            {
-                string apiUrl = $"api/Agendamentos/cancelarAgendamento/{agendamentoId}";
+            string apiUrl = $"api/Agendamentos/AlterarStatus/{agendamentoId}";
 
-                var request = new HttpRequestMessage(HttpMethod.Patch, apiUrl);
+            // Cria o DTO que o backend espera
+            var requestDto = new { NovoStatusId = novoStatusId };
 
-                var response = await _httpClient.SendAsync(request);
+            // Envia a requisição PATCH
+            var response = await _httpClient.PatchAsJsonAsync(apiUrl, requestDto);
 
-                if (response.IsSuccessStatusCode) // Verifica 200 OK, 204 No Content, etc.
-                {
-                    return true; // Sucesso
-                }
-                else
-                {
-                    // Log do erro vindo da API (opcional)
-                    var errorContent = await response.Content.ReadAsStringAsync();
-                    Debug.WriteLine($"Falha ao cancelar agendamento {agendamentoId}. Status: {response.StatusCode}, Resposta: {errorContent}");
-                    return false; // Falha
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Erro ao tentar cancelar agendamento {agendamentoId}: {ex.Message}");
-                return false; // Falha na comunicação
-            }
+            return response.IsSuccessStatusCode;
+        }
+        public async Task<bool> CancelarAgendamentoAsync(int agendamentoId)
+        {
+            // Chama o método genérico passando o status de Cancelado (ex: 2)
+            return await AlterarStatusAsync(agendamentoId, (int)StatusAgendamento.Cancelado);
+        }
+
+        // NOVO MÉTODO: Específico para FINALIZAR
+        public async Task<bool> FinalizarAgendamentoAsync(int agendamentoId)
+        {
+            // Chama o método genérico passando o status de Finalizado (ex: 3)
+            return await AlterarStatusAsync(agendamentoId, (int)StatusAgendamento.Finalizado);
         }
         public async Task<bool> SalvarAgendamentoAsync(CriarAgendamentoDTO agendamentoRequest)
         {
