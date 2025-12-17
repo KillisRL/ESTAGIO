@@ -29,6 +29,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<ConsultarAgendamentoViewModel>();
         builder.Services.AddTransient<PrincipalViewModel>();
         builder.Services.AddTransient<ConsultarServicosViewModel>();
+        builder.Services.AddTransient<UsuariosViewModel>();
 
         //VIEWS
         builder.Services.AddTransient<pgFinalizarAgendamento>();
@@ -38,6 +39,7 @@ public static class MauiProgram
         builder.Services.AddTransient<pgPrincipal>();
         builder.Services.AddTransient<pgLoginBarbeiro>();
         builder.Services.AddTransient<pgConsultarServicos>();
+        builder.Services.AddTransient<pgCadastrarBarbeiro>();
 
 
 

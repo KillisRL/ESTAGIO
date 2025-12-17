@@ -9,8 +9,7 @@ namespace BarbeariaMatutosApp.ViewModels
 {
     public partial class AgendamentoServicoViewModel : ObservableObject
     {
-        private readonly HttpClient _httpClient;
-        private const string ApiBaseURL = "http://localhost:5125";
+        private readonly ApiServices _apiServices;
 
         [ObservableProperty]
         private string? nome;
@@ -26,40 +25,38 @@ namespace BarbeariaMatutosApp.ViewModels
 
         [ObservableProperty]
         private Servicos? servicoSelecionado;
-        public AgendamentoServicoViewModel()
-        {
-            CarregarDadosUsuario();
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(ApiBaseURL)
-            };
-            // Inicialize a coleção
-            Servicos = new ObservableCollection<Servicos>();
 
+        // Construtor recebe apenas o ApiServices
+        public AgendamentoServicoViewModel(ApiServices apiServices)
+        {
+            _apiServices = apiServices;
+            Servicos = new ObservableCollection<Servicos>();
+            CarregarDadosUsuario();
         }
+
         private void CarregarDadosUsuario()
         {
             var usuario = SessaoUsuarioService.Usuariologado;
             if (usuario != null)
             {
-                Nome = usuario.Nome;       // "Bem Vindo - " + Nome
-                IdUsuario = usuario.IDUsuario; // Agora você tem o ID para usar no agendamento
+                Nome = usuario.Nome;
+                IdUsuario = usuario.IDUsuario;
             }
         }
+
         [RelayCommand]
         private async Task LoadServicosAsync()
         {
-            if (IsBusy)
-                return;
+            if (IsBusy) return;
 
             IsBusy = true;
             try
             {
-                var servicosDaApi = await _httpClient.GetFromJsonAsync<List<Servicos>>("api/Servicos");
+                // CHAMA O SEU SERVIÇO (que já tem a URL correta para Windows/Android)
+                var servicosDaApi = await _apiServices.GetServicosAsync();
 
                 if (servicosDaApi != null)
                 {
-                    // Limpa e adiciona os itens na coleção
                     Servicos.Clear();
                     foreach (var servico in servicosDaApi)
                     {
@@ -67,43 +64,27 @@ namespace BarbeariaMatutosApp.ViewModels
                     }
                 }
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Erro", $"Não foi possível carregar os serviços. Verifique a conexão com a API. Erro: {ex.Message}", "OK");
+                await Application.Current.MainPage.DisplayAlert("Erro", $"Não foi possível carregar os serviços: {ex.Message}", "OK");
             }
             finally
             {
                 IsBusy = false;
             }
         }
+
         [RelayCommand]
         private async Task AgendarServicoAsync()
         {
             if (ServicoSelecionado != null)
             {
-                // Aqui você pode usar as informações do serviço selecionado.
-                int idDoServico = ServicoSelecionado.IdServico;
-                string nomeDoServico = ServicoSelecionado.DescServico;
-
-                await Application.Current.MainPage.DisplayAlert("Serviço Selecionado",
-                    $"Você selecionou o serviço: {nomeDoServico} com ID: {idDoServico}", "OK");
-
-                if (ServicoSelecionado != null)
+                var navigationParameter = new Dictionary<string, object>
                 {
-                    // O jeito NOVO e CORRETO (usando Shell e passando parâmetros):
+                    { "Servico", ServicoSelecionado }
+                };
 
-                    // 1. Prepara o objeto de serviço para ser enviado
-                    var navigationParameter = new Dictionary<string, object>
-                        {
-                            { "Servico", ServicoSelecionado }
-                        };
-
-                    // 2. Pede para o Shell navegar para a rota da página, passando o parâmetro
-                    await Shell.Current.GoToAsync(nameof(pgFinalizarAgendamento), navigationParameter);
-                }
-
-                // Exemplo de navegação para a próxima tela do agendamento
-                // await Shell.Current.GoToAsync($"//proximaPagina?servicoId={idDoServico}");
+                await Shell.Current.GoToAsync(nameof(pgFinalizarAgendamento), navigationParameter);
             }
         }
     }

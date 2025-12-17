@@ -4,32 +4,39 @@
              xmlns:vm="clr-namespace:BarbeariaMatutosApp.ViewModels"
              x:Class="BarbeariaMatutosApp.Views.pgPrincipal"
              xmlns:views="clr-namespace:BarbeariaMatutosApp.Views"
-             Title="pgPrincipal"
-             WidthRequest="400"
-             HeightRequest="900">
-
-        <VerticalStackLayout Spacing="20" Padding="30">
+             Title="pgPrincipal">
+    <VerticalStackLayout Spacing="20" Padding="30">
         <HorizontalStackLayout HorizontalOptions="Start">
             <Label Text="{Binding Nome, StringFormat='Bem-Vindo: {0}'}"
                    FontAttributes="Bold"
                    FontSize="Subtitle"/>
         </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Start">
+            <Label Text="{Binding UsuarioTipo, StringFormat='Tipo: {0}'}" FontSize="Caption"/>
+        </HorizontalStackLayout>
+
 
         <Label Text="BARBEARIA MATUTOS" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Title"/>
 
         <Button Text="Agendamento de Serviço"
-                        Command="{Binding AbrirViewCommand}"
-                        CommandParameter="{x:Type TypeName=views:pgAgendamentoServico}">
-        </Button>
+                IsVisible="{Binding IsClienteVisible}"
+                Command="{Binding AbrirViewCommand}"
+                CommandParameter="{x:Type TypeName=views:pgAgendamentoServico}"/>
 
-            <Button Text="Consultar Agendamento"
-                        Command="{Binding AbrirViewCommand}"
-                        CommandParameter="{x:Type TypeName=views:pgConsultarAgendamento}" />
+        <Button Text="Consultar Agendamento"
+                Command="{Binding AbrirViewCommand}"
+                IsVisible="{Binding IsClienteVisible}"
+                CommandParameter="{x:Type TypeName=views:pgConsultarAgendamento}" />
 
         <Button Text="Consultar Serviços"
-                      Command="{Binding ConsultarServicosCommand}"
-                      CommandParameter="{x:Type TypeName=views:pgConsultarServicos}" />
+                IsVisible="{Binding IsAdminOrBarbeiroVisible}"
+                Command="{Binding ConsultarServicosCommand}"
+                CommandParameter="{x:Type TypeName=views:pgConsultarServicos}" />
 
+        <Button Text="Cadastrar Barbeiro (Admin)"
+                IsVisible="{Binding IsAdminVisible}"
+                BackgroundColor="DarkRed" Command="{Binding AbrirViewCommand}"
+                CommandParameter="{x:Type TypeName=views:pgCadastrarBarbeiro}" />
 
     </VerticalStackLayout>
 </ContentPage>
