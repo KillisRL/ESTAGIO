@@ -107,7 +107,7 @@ namespace BarbeariaMatutosApp.ViewModels
                     IdSituacao = agendamento.IdSituacao = 1,
                     IDUsuario = SessaoUsuarioService.Usuariologado.IDUsuario
                 };
-
+                 
                 // 3. Chamar o ApiService para enviar o DTO para a API
                 bool sucesso = await _apiService.SalvarAgendamentoAsync(agendamentoRequest);
 
@@ -116,7 +116,7 @@ namespace BarbeariaMatutosApp.ViewModels
                 {
                     await Application.Current.MainPage.DisplayAlert("Sucesso!", "Seu agendamento foi confirmado.", "OK");
                     // Volta para a página raiz da aplicação
-                    await Shell.Current.GoToAsync(nameof(pgAgendamentoServico));
+                    await Shell.Current.GoToAsync(nameof(pgPrincipal));
                 }
                 else
                 {

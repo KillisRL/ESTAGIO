@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarbeariaMatutosApp.Views.pgCadastrarBarbeiro">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+
+            <Label Text="Cadastro de Barbeiros"
+                   FontSize="25" 
+                   FontAttributes="Bold"
+                   TextColor="#333333"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Cód. Barbeiro:" 
+                       FontAttributes="Bold"/>
+                <Entry Text="{Binding Idbarbeiro}"
+                       Placeholder="Automático"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Nome Completo:" 
+                       FontAttributes="Bold"/>
+                <Entry Text="{Binding Nomebarbeiro}" 
+                       Placeholder="Digite o nome completo"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Login:" 
+                       FontAttributes="Bold"/>
+                <Entry Text="{Binding Login}" 
+                       Placeholder="Digite o login de acesso"/>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Senha:" 
+                       FontAttributes="Bold"/>
+                <Entry Text="{Binding Senha}" 
+                       IsPassword="True" 
+                       Placeholder="Digite a senha"/>
+            </VerticalStackLayout>
+
+            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="20">
+
+                <VerticalStackLayout Grid.Column="0" Spacing="5">
+
+                    <Picker Grid.Column="0"
+                            Title="Tipo de Usuário" 
+                            TitleColor="White"
+                            ItemsSource="{Binding TiposUsuarioDisponiveis}"
+                            SelectedItem="{Binding TipoUsuarioSelecionado}"
+                            BackgroundColor="White"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            WidthRequest="110"
+                            HeightRequest="60"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" 
+                                     Spacing="2" 
+                                     HorizontalOptions="End"
+                                     VerticalOptions="End">
+                    <Label Text="Ativo" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Center"/>
+                    <CheckBox IsChecked="{Binding Ativo}" 
+                              HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+
+            <Button Text="CADASTRAR"
+                    Command="{Binding CadastrarBarbeiroCommand}"
+                    Margin="0,20,0,0"
+                    HeightRequest="55"
+                    CornerRadius="10"
+                    BackgroundColor="#007BFF"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="16"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

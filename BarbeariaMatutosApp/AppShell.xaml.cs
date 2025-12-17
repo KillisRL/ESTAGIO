@@ -16,6 +16,7 @@ namespace BarbeariaMatutosApp
             Routing.RegisterRoute(nameof(pgLoginBarbeiro), typeof(pgLoginBarbeiro));
             Routing.RegisterRoute(nameof(pgConsultarAgendamento), typeof(pgConsultarAgendamento));
             Routing.RegisterRoute(nameof(pgConsultarServicos), typeof(pgConsultarServicos));
+            Routing.RegisterRoute(nameof(pgCadastrarBarbeiro), typeof(pgCadastrarBarbeiro));
         }
     }
 }

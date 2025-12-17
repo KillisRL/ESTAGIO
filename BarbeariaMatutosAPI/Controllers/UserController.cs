@@ -31,7 +31,7 @@ namespace BarbeariaMatutosAPI.Controllers
             return Ok(users.Entity);
         }
         */
-        [HttpPost("Cadastrar")]
+        [HttpPost("cadastrar")]
         public async Task<IActionResult> CreateUser(UserCreate userCreate)
         {
             var user = new Users
@@ -77,6 +77,25 @@ namespace BarbeariaMatutosAPI.Controllers
             }
 
             return Ok(barbeiro);
+        }
+
+        [HttpPost("cadastrar/barbeiro")]
+        public async Task<IActionResult> CreateBarbeiro(Barbeiro barbeiroCreate)
+        {
+            var barbeiro = new Barbeiro
+            {
+                IdBarbeiro = barbeiroCreate.IdBarbeiro,
+                NomeBarbeiro = barbeiroCreate.NomeBarbeiro,
+                Ativo = barbeiroCreate.Ativo,
+                Login = barbeiroCreate.Login,
+                Senha = barbeiroCreate.Senha,
+                IdPessoaTipo = barbeiroCreate.IdPessoaTipo,
+            };
+
+            _db.Barbeiros.Add(barbeiro);
+            await _db.SaveChangesAsync();
+
+            return Ok(barbeiroCreate);
         }
     }
 }

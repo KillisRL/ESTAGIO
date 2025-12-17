@@ -1,4 +1,5 @@
 using UsersDomain;
+using BarbeariaMatutosApp.Services;
 using System.Net.Http.Json;
 using UsersDomain.Entidades;
 
@@ -7,13 +8,12 @@ namespace BarbeariaMatutosApp.Views;
 public partial class pgUsuarioCadastro : ContentPage
 {
     private readonly HttpClient httpClient;
-    public pgUsuarioCadastro()
+    private readonly ApiServices _apiservices;
+    public pgUsuarioCadastro(ApiServices apiServices)
 	{
-		InitializeComponent();
-        httpClient = new HttpClient
-        {
-            BaseAddress = new Uri("http://localhost:5125/")
-        };
+        _apiservices = apiServices;
+
+        InitializeComponent();
     }
     private async void btnCadastrar_Clicked(object sender, EventArgs e)
     {

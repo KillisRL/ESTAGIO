@@ -11,10 +11,20 @@ namespace BarbeariaMatutosApp.Services
         private readonly HttpClient _httpClient;
 
         private const string ApiBaseURL = "http://localhost:5125"; // Ou pegue de um arquivo de config// Ou pegue de um arquivo de config
-
         public ApiServices()
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri(ApiBaseURL) };
+            string baseUrl = "http://localhost:5125";
+
+            // Se for Android, usa o IP especial 10.0.2.2
+            if (DeviceInfo.Platform == DevicePlatform.Android)
+            {
+                baseUrl = "http://10.0.2.2:5125";
+            }
+
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri(baseUrl)
+            };
         }
 
         public async Task<List<Servicos>> GetServicosAsync()
@@ -113,6 +123,32 @@ namespace BarbeariaMatutosApp.Services
             {
                 // Log do erro para depuração
                 Debug.WriteLine($"Erro ao salvar agendamento: {ex.Message}");
+                return false;
+            }
+        }
+        public async Task<bool> CadastrarBarbeiroAsync(Barbeiro barbeiro)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("User/cadastrar/barbeiro", barbeiro);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Sucesso! Opcional: você pode ler o objeto retornado se precisar
+                    // var barbeiroCriado = await response.Content.ReadFromJsonAsync<Barbeiro>();
+                    return true;
+                }
+                else
+                {
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"Falha ao cadastrar barbeiro. Status: {response.StatusCode}, Erro: {errorMessage}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Erros de rede ou exceções inesperadas
+                Debug.WriteLine($"Exceção ao cadastrar barbeiro: {ex.Message}");
                 return false;
             }
         }

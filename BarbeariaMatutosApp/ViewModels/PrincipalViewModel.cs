@@ -26,6 +26,15 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty]
         private string usuarioTipo;
 
+        [ObservableProperty]
+        private bool _isAdminVisible;
+
+        [ObservableProperty]
+        private bool _isClienteVisible;
+
+        [ObservableProperty]
+        private bool  _IsAdminOrBarbeiroVisible;
+
         public PrincipalViewModel (ApiServices apiServices)
         {
             _apiServices = apiServices;
@@ -39,11 +48,16 @@ namespace BarbeariaMatutosApp.ViewModels
             var usuario = SessaoUsuarioService.Usuariologado;
             var barbeiro = SessaoUsuarioService.BarbeiroLogado;
 
-            if(usuario != null)
+            bool isAdmin = false;
+            bool isBarbeiro = false;
+            bool isCliente = false;
+
+            if (usuario != null)
             {
                 nome = usuario.Nome;
                 idUsuario = usuario.IDUsuario;
                 usuarioTipo = usuario.IdPessoaTipo.ToString();
+                isCliente = usuario.IdPessoaTipo == TipoUsuario.Cliente;
             }
 
             else if(barbeiro != null)
@@ -51,6 +65,9 @@ namespace BarbeariaMatutosApp.ViewModels
                 nome = barbeiro.NomeBarbeiro;
                 idUsuario = barbeiro.IdBarbeiro;
                 usuarioTipo = barbeiro.IdPessoaTipo.ToString();
+
+                isAdmin = barbeiro.IdPessoaTipo == TipoUsuario.Admin;
+                isBarbeiro = barbeiro.IdPessoaTipo == TipoUsuario.Barbeiro;
             }
             else
             {
@@ -58,6 +75,9 @@ namespace BarbeariaMatutosApp.ViewModels
                 idUsuario = null;
                 usuarioTipo = "Nenhum";
             }
+            _isAdminVisible = isAdmin;
+            _isClienteVisible = isCliente;
+            _IsAdminOrBarbeiroVisible = isBarbeiro || isAdmin;
         }
 
         [RelayCommand]
