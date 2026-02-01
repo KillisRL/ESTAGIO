@@ -15,10 +15,11 @@ namespace BarbeariaMatutosApp.ViewModels
 {
     public partial class UsuariosViewModel : BaseViewModel
     {
+
         // Use readonly para serviços injetados e não o deixe nulo
         private readonly ApiServices _apiservices;
 
-        // Propriedades ligadas à tela (XAML)
+        // Propriedades ligadas à tela (XAML PARA BARBEIRO)
         [ObservableProperty] private int idbarbeiro;
         [ObservableProperty] private string nomebarbeiro;
         [ObservableProperty] private bool ativo;
@@ -29,6 +30,18 @@ namespace BarbeariaMatutosApp.ViewModels
 
         // Lista para expor as opções do enum para a View
         public ObservableCollection<TipoUsuario> TiposUsuarioDisponiveis { get; }
+
+        //PROPRIEDADES DA TELA PARA OS CLIENTES
+        [ObservableProperty] private string nome;
+        [ObservableProperty] private int idUsuario;
+        [ObservableProperty] private string email;
+        [ObservableProperty] private string telefone;
+        [ObservableProperty] private string senhahash;
+
+
+        //Tipo de Usuário que será identificado.
+        [ObservableProperty]
+        private string usuarioTipo;
 
         public UsuariosViewModel(ApiServices apiServices)
         {
@@ -42,6 +55,88 @@ namespace BarbeariaMatutosApp.ViewModels
 
             // Define um valor padrão para a seleção, por exemplo, Barbeiro
             tipoUsuarioSelecionado = TipoUsuario.Barbeiro;
+
+            SessaoUsuarioService.OnSessaoChanged += CarregarDadosUsuario;
+        }
+
+        private void CarregarDadosUsuario()
+        {
+            var usuario = SessaoUsuarioService.Usuariologado;
+            var barbeiro = SessaoUsuarioService.BarbeiroLogado;
+
+            bool isAdmin = false;
+            bool isBarbeiro = false;
+            bool isCliente = false;
+
+            if (usuario != null)
+            {
+                nome = usuario.Nome;
+                idUsuario = usuario.IDUsuario;
+                usuarioTipo = usuario.IdPessoaTipo.ToString();
+                isCliente = usuario.IdPessoaTipo == TipoUsuario.Cliente;
+            }
+
+            else if(barbeiro != null)
+            {
+                nome = barbeiro.NomeBarbeiro;
+                idUsuario = barbeiro.IdBarbeiro;
+                usuarioTipo = barbeiro.IdPessoaTipo.ToString();
+
+                isAdmin = barbeiro.IdPessoaTipo == TipoUsuario.Admin;
+                isBarbeiro = barbeiro.IdPessoaTipo == TipoUsuario.Barbeiro;
+            }
+        }
+
+        [RelayCommand]
+        private async Task AbrirTelaAlteracaoAsync()
+        {
+            if(IsBarbeiro == true || IsAdmin == true)
+            {
+                await Shell.Current.GoToAsync(nameof(pgCadastrarBarbeiro));
+            }
+            else
+            {
+                await Shell.Current.GoToAsync(nameof(pgUsuarioCadastro));
+            }
+        }
+
+        [RelayCommand]
+        private async Task CadastrarClienteAsync()
+        {
+            if(string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(Senhahash))
+            {
+                await Application.Current.MainPage.DisplayAlert("Atenção", "Preencha todos os campos obrigatórios.", "OK");
+                return;
+            }
+
+            try
+            {
+                var clienteParaCadastrar = new UserCreate
+                {
+                    Nome = this.Nome,
+                    Email = this.Email,
+                    SenhaHash = this.Senhahash,
+                    Telefone = this.Telefone,
+                    IdPessoaTipo = TipoUsuario.Cliente
+                };
+
+                bool sucesso = await _apiservices.CadastrarClienteAsync(clienteParaCadastrar);
+                if (sucesso)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cliente cadastrado com sucesso!", "OK");
+                    LimparCampos(); // Método auxiliar para limpar a tela
+                    await Shell.Current.GoToAsync(nameof(pgLoginBarbearia));
+                }
+                else
+                {
+                    // O serviço já deve ter logado o erro, avise o usuário.
+                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
+            }
         }
 
         [RelayCommand]
@@ -103,6 +198,40 @@ namespace BarbeariaMatutosApp.ViewModels
             Login = string.Empty;
             Senha = string.Empty;
             Ativo = true; // Reseta para o padrão
+        }
+
+        [RelayCommand]
+        private async Task AlterarCadastroBarbeiro()
+        {
+            try 
+            {
+                var alterarBarbeiro = new Barbeiro
+                {
+                    IdBarbeiro = this.idbarbeiro,
+                    NomeBarbeiro = this.Nomebarbeiro,
+                    Login = this.Login,
+                    Ativo = this.Ativo,
+                    Senha = this.Senha,
+                    IdPessoaTipo = this.tipoUsuarioSelecionado
+                };
+                bool sucesso = await _apiservices.AlterarBarbeiroAsync(alterarBarbeiro);
+
+                if (sucesso)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Alteração realizada com sucesso!", "OK");
+                    LimparCampos(); // Método auxiliar para limpar a tela
+                    await Shell.Current.GoToAsync(nameof(pgPrincipal));
+                }
+                else
+                {
+                    // O serviço já deve ter logado o erro, avise o usuário.
+                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
+                }
+            }
+            catch(Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
+            }
         }
     }
 }

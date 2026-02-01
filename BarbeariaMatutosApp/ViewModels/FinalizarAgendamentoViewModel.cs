@@ -85,14 +85,18 @@ namespace BarbeariaMatutosApp.ViewModels
 
         [RelayCommand]
         private async Task FinalizarAgendamentoAsync()
-        {
+         {
             // 1. Validação (seu código já está correto)
             if (Servico is null || BarbeiroSelecionado is null)
             {
                 await Application.Current.MainPage.DisplayAlert("Atenção", "Por favor, selecione um serviço e um barbeiro.", "OK");
                 return;
             }
-
+            if (SessaoUsuarioService.Usuariologado?.IDUsuario == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Atenção!", "Apenas perfis de Clientes podem realizar agendamentos pelo aplicativo.", "OK");
+                return;
+            }
             try
             {
                 IsBusy = true; // Ativa o indicador de "carregando"
@@ -110,6 +114,9 @@ namespace BarbeariaMatutosApp.ViewModels
                  
                 // 3. Chamar o ApiService para enviar o DTO para a API
                 bool sucesso = await _apiService.SalvarAgendamentoAsync(agendamentoRequest);
+
+
+
 
                 // 4. Dar feedback ao usuário e navegar
                 if (sucesso)

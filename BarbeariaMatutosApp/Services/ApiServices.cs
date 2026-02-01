@@ -152,6 +152,30 @@ namespace BarbeariaMatutosApp.Services
                 return false;
             }
         }
+
+        public async Task<bool> CadastrarClienteAsync (UserCreate userCreate)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("User/cadastrar", userCreate);
+                if (response.IsSuccessStatusCode)
+                { 
+                    return true;
+                }
+                else
+                {
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"Falha ao cadastrar barbeiro. Status: {response.StatusCode}, Erro: {errorMessage}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Exceção ao cadastrar barbeiro: {ex.Message}");
+                return false;
+            }
+        }
+
         public async Task<(Users usuario, string erro)> Login(string email, string senha)
         {
             // 1. Mudamos o retorno para <(Usuario usuario, string erro)>
@@ -213,6 +237,23 @@ namespace BarbeariaMatutosApp.Services
                 Debug.WriteLine($"Erro de conexão no login: {ex.Message}");
                 // 5. Em caso de exceção, também retornamos um usuário nulo
                 return (null, $"Erro de conexão: {ex.Message}");
+            }
+        }
+
+        public async Task<bool> AlterarBarbeiroAsync(Barbeiro barbeiroParaAlterar)
+        {
+            try 
+            {
+                string apiUrl = $"User/alterar/barbeiro";
+                var response = await _httpClient.PutAsJsonAsync(apiUrl, barbeiroParaAlterar);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // É uma boa prática logar o erro para ajudar na depuração
+                Console.WriteLine($"Erro ao alterar barbeiro: {ex.Message}");
+                // Se houve uma exceção (ex: erro de rede), retorna false
+                return false;
             }
         }
     }

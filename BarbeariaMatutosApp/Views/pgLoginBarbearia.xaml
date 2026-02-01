@@ -3,17 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarbeariaMatutosApp.Views.pgLoginBarbearia"
              xmlns:views="clr-namespace:BarbeariaMatutosApp.Views"
-             xmlns:converters="clr-namespace:BarbeariaMatutosApp.Converters"
-             BackgroundColor="#1E1E1E"
-             WidthRequest="400"
-            HeightRequest="900">
+             xmlns:converters="clr-namespace:BarbeariaMatutosApp.Converters">
     <ContentPage.Resources>
         <converters:InvertBooleanConverter x:Key="InvertBool" />
     </ContentPage.Resources>
 
-    <ScrollView>
+    <VerticalStackLayout>
+        <Label Text="Barbearia" FontSize="45" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center" Margin="0,0,0,0"/>
+
+        <Label Text="Matutos" FontSize="60" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
         <VerticalStackLayout Padding="20" Spacing="15" VerticalOptions="Center">
-            <Label Text="Barbearia Matutos" FontSize="50" FontAttributes="Bold" TextColor="Black" HorizontalTextAlignment="Center"/>
 
             <Frame CornerRadius="10" BackgroundColor="#2A2A2A" Padding="20" BorderColor="#444444">
 
@@ -76,5 +75,5 @@
             </Frame>
 
         </VerticalStackLayout>
-    </ScrollView>
+    </VerticalStackLayout>
 </ContentPage>

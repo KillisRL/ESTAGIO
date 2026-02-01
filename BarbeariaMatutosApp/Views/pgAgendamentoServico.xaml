@@ -2,17 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarbeariaMatutosApp.Views.pgAgendamentoServico"
-             Title="pgAgendamentoServico"
-             xmlns:viewmodel="clr-namespace:BarbeariaMatutosApp.ViewModels"
-              WidthRequest="400"
-HeightRequest="900">
+             Title="Agendamento"
+             xmlns:viewmodel="clr-namespace:BarbeariaMatutosApp.ViewModels">
 
     <StackLayout>
-        <HorizontalStackLayout>
-            <Label Text="Bem Vindo -"/>
-            <Label Text="{Binding Nome}"/>
-        </HorizontalStackLayout>
-    <ScrollView>
+        <ScrollView>
         <Grid RowDefinitions="Auto, *, Auto">
             <Label Text="Serviços Disponíveis"
                Grid.Row="0"
