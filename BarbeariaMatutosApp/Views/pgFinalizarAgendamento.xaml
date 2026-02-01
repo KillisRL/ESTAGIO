@@ -5,23 +5,21 @@
              Title="Finalizar Agendamento"
              xmlns:vm="clr-namespace:BarbeariaMatutosApp.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:DataType="vm:FinalizarAgendamentoViewModel"
-              WidthRequest="400"
-              HeightRequest="900">
+             x:DataType="vm:FinalizarAgendamentoViewModel">
 
     
     <VerticalStackLayout Spacing="15" Padding="20">
-        <Label Text="Você está agendando o serviço" FontSize="Title" FontAttributes="Bold"/>
+        <Label Text="Serviço Selecionado:" FontSize="Title" FontAttributes="Bold"/>
 
         <HorizontalStackLayout>
-            <Label Text="Serviço: " FontSize="Title" Margin="0,0,5,0"/>
-            <Label Text="{Binding Servico.DescServico}" FontSize="Medium" FontAttributes="Bold" />
+            <Label Text="Serviço: " FontSize="18" Margin="0,0,5,0" FontAttributes="Bold"/>
+            <Label Text="{Binding Servico.DescServico}" FontSize="20" FontAttributes="Bold" />
         </HorizontalStackLayout>
 
-        <Label Text="{Binding Servico.ValorServico, StringFormat='Valor: R$ {0:F2}'}" FontSize="Medium" />
+        <Label Text="{Binding Servico.ValorServico, StringFormat='Valor: R$ {0:F2}'}" FontSize="18" FontAttributes="Bold" />
         <HorizontalStackLayout>
-            <Label Text="Duraçao: " FontSize="Title" Margin="0,0,5,0"/>
-            <Label Text="{Binding Servico.Duracao}" FontSize="Medium" FontAttributes="Bold"/>
+            <Label Text="Duraçao: " FontSize="18" Margin="0,0,5,0" FontAttributes="Bold"/>
+            <Label Text="{Binding Servico.Duracao}" FontSize="19" FontAttributes="Bold"/>
         </HorizontalStackLayout>
         
         <Picker Title="Selecione um Barbeiro"

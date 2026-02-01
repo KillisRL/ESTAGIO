@@ -52,7 +52,7 @@ namespace BarbeariaMatutosApp.ViewModels
                 Email = string.Empty;
 
 
-                await Shell.Current.GoToAsync(nameof(pgPrincipal));
+                await Shell.Current.GoToAsync("//Principal/Home");
             }
             else
             {
@@ -88,7 +88,7 @@ namespace BarbeariaMatutosApp.ViewModels
                 Senhabarbeiro = string.Empty;
 
 
-                await Shell.Current.GoToAsync(nameof(pgPrincipal));
+                await Shell.Current.GoToAsync("//Principal/Home");
             }
             else
             {

@@ -32,33 +32,32 @@
                 HorizontalOptions="Center"
                 Margin="0,0,0,25"/>
 
+            <!--<Entry Text="{Binding Idbarbeiro}" Placeholder="Automático"/>-->
+
             <Label Text="Nome Completo" Style="{StaticResource FormLabelStyle}"/>
-            <Entry x:Name="txtNome" 
-                   Placeholder="Digite seu nome" 
-                   Style="{StaticResource FormEntryStyle}"/>
+            <Entry Text="{Binding Nome}" Placeholder="Nome"/>
 
             <Label Text="E-mail" Style="{StaticResource FormLabelStyle}"/>
-            <Entry x:Name="txtEmail" 
+            <Entry Text="{Binding Email}"
                    Placeholder="seuemail@exemplo.com" 
                    Keyboard="Email" 
                    Style="{StaticResource FormEntryStyle}"/>
 
             <Label Text="Telefone (WhatsApp)" Style="{StaticResource FormLabelStyle}"/>
-            <Entry x:Name="txtTelefone" 
+            <Entry Text="{Binding Telefone}"
                    Placeholder="(XX) XXXXX-XXXX" 
                    Keyboard="Numeric" 
-                   TextChanged="TxtTelefone_TextChanged" 
                    MaxLength="11" 
                    Style="{StaticResource FormEntryStyle}"/>
 
             <Label Text="Senha" Style="{StaticResource FormLabelStyle}"/>
-            <Entry x:Name="txtSenha" 
+            <Entry Text="{Binding Senhahash}" 
                    Placeholder="••••••••" 
                    IsPassword="True" 
                    Style="{StaticResource FormEntryStyle}"/>
 
             <Button Text="Cadastrar"
-                    Clicked="btnCadastrar_Clicked"
+                    Command="{Binding CadastrarClienteCommand}"
                     BackgroundColor="#007bff" 
                     TextColor="White"
                     FontAttributes="Bold"

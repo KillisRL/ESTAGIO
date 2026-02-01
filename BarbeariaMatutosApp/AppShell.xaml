@@ -3,14 +3,33 @@
     x:Class="BarbeariaMatutosApp.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:BarbeariaMatutosApp"
-     xmlns:view="clr-namespace:BarbeariaMatutosApp.Views"
-    Shell.FlyoutBehavior="Flyout"
-    Title="BarbeariaMatutosApp">
+    xmlns:view="clr-namespace:BarbeariaMatutosApp.Views"
+    Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate view:pgLoginBarbearia}"
-        Route="MainPage" />
+    <ShellContent ContentTemplate="{DataTemplate view:pgLoginBarbearia}"
+                  Route="Login"
+                  Shell.FlyoutItemIsVisible="False"
+                  Shell.NavBarIsVisible="False"
+                  Shell.TabBarIsVisible="False" />
+
+    <TabBar Route="Principal">
+
+        <ShellContent 
+                      Icon="config.png"
+                      ContentTemplate="{DataTemplate view:pgConfiguracoes}" />
+        
+        
+        
+        <ShellContent Route="Home"
+                  Icon="casa.png"
+                  ContentTemplate="{DataTemplate view:pgPrincipal}" />
+
+
+
+        <ShellContent
+                      Icon="tesoura.png"
+                      ContentTemplate="{DataTemplate view:pgAgendamentoServico}" />
+
+    </TabBar>
 
 </Shell>

@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarbeariaMatutosApp.Views.pgConsultarServicos"
              xmlns:viewmodel="clr-namespace:BarbeariaMatutosApp.ViewModels"
-             Title="pgConsultarServicos"
-             WidthRequest="400"
-                HeightRequest="900">
+             Title="Meus Serviços">
     <Grid RowDefinitions="Auto, *">
 
         <Label Grid.Row="0"

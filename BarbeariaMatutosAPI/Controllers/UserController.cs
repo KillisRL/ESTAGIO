@@ -22,15 +22,7 @@ namespace BarbeariaMatutosAPI.Controllers
             var users = _db.Users.ToList();
             return Ok(users);
         }
-        /*[HttpPost]
-        public IActionResult Add(Users user)
-        {
-            var users = _db.Users.Add(user);
-            _db.SaveChanges();
 
-            return Ok(users.Entity);
-        }
-        */
         [HttpPost("cadastrar")]
         public async Task<IActionResult> CreateUser(UserCreate userCreate)
         {
@@ -96,6 +88,18 @@ namespace BarbeariaMatutosAPI.Controllers
             await _db.SaveChangesAsync();
 
             return Ok(barbeiroCreate);
+        }
+
+        [HttpPut("alterar/barbeiro")]
+        public async Task<IActionResult> AlterarBarbeiro([FromBody] Barbeiro barbeiro)
+        {
+            // Marca o objeto inteiro como "Modificado"
+            _db.Barbeiros.Update(barbeiro);
+
+            await _db.SaveChangesAsync();
+
+            // Retorna 200 OK com o objeto atualizado
+            return Ok(barbeiro);
         }
     }
 }

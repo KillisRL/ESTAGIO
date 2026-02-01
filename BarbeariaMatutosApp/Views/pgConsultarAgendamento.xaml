@@ -4,9 +4,7 @@
              x:Class="BarbeariaMatutosApp.Views.pgConsultarAgendamento"
              xmlns:viewmodel="clr-namespace:BarbeariaMatutosApp.ViewModels"
              BackgroundColor="#1E1E1E"
-             Title="Meus Agendamentos"
-             WidthRequest="400"
-                HeightRequest="900">
+             Title="Meus Agendamentos">
     <Grid RowDefinitions="Auto, *">
 
         <Label Grid.Row="0"
