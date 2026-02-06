@@ -30,6 +30,8 @@ public static class MauiProgram
         builder.Services.AddTransient<PrincipalViewModel>();
         builder.Services.AddTransient<ConsultarServicosViewModel>();
         builder.Services.AddTransient<UsuariosViewModel>();
+        builder.Services.AddTransient<PerfilClienteViewModel>();
+        builder.Services.AddTransient<PerfilBarbeiroViewModel>();
 
         //VIEWS
         builder.Services.AddTransient<pgFinalizarAgendamento>();

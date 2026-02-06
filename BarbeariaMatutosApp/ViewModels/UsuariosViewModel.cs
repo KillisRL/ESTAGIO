@@ -90,106 +90,145 @@ namespace BarbeariaMatutosApp.ViewModels
         [RelayCommand]
         private async Task AbrirTelaAlteracaoAsync()
         {
-            if(IsBarbeiro == true || IsAdmin == true)
+            bool confirmar = await Shell.Current.DisplayAlert("Atenção",
+                $"Deseja realizar a alteração do Perfil?",
+                "Sim", "Não");
+
+            if (!confirmar)
+                return; // Usuário cancelou a ação
+
+            if (IsBarbeiro == true || IsAdmin == true)
             {
-                await Shell.Current.GoToAsync(nameof(pgCadastrarBarbeiro));
+                Barbeiro barbeiroLogado = SessaoUsuarioService.BarbeiroLogado;
+                if(barbeiroLogado != null)
+                {
+                    var ParametroNavegacao = new Dictionary<string, object>
+                    {
+                        {"BarbeiroParaEditar", barbeiroLogado }
+                    };
+
+                    await Shell.Current.GoToAsync(nameof(pgCadastrarBarbeiro));
+                }
+
+                else
+                {
+                    await Shell.Current.DisplayAlert("Erro", "Não foi possível recuperar os dados do barbeiro logado.", "OK");
+                }
+               
+
             }
             else
             {
-                await Shell.Current.GoToAsync(nameof(pgUsuarioCadastro));
-            }
-        }
 
-        [RelayCommand]
-        private async Task CadastrarClienteAsync()
-        {
-            if(string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(Senhahash))
-            {
-                await Application.Current.MainPage.DisplayAlert("Atenção", "Preencha todos os campos obrigatórios.", "OK");
-                return;
-            }
+                Users usuarioLogado = SessaoUsuarioService.Usuariologado;
 
-            try
-            {
-                var clienteParaCadastrar = new UserCreate
+                if(usuarioLogado != null)
                 {
-                    Nome = this.Nome,
-                    Email = this.Email,
-                    SenhaHash = this.Senhahash,
-                    Telefone = this.Telefone,
-                    IdPessoaTipo = TipoUsuario.Cliente
-                };
+                    var parametroNavegacao = new Dictionary<string, object>
+                    {
+                        {"ClienteParaEditar", usuarioLogado }
+                    };
 
-                bool sucesso = await _apiservices.CadastrarClienteAsync(clienteParaCadastrar);
-                if (sucesso)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cliente cadastrado com sucesso!", "OK");
-                    LimparCampos(); // Método auxiliar para limpar a tela
-                    await Shell.Current.GoToAsync(nameof(pgLoginBarbearia));
+                    await Shell.Current.GoToAsync(nameof(pgUsuarioCadastro));
                 }
+
                 else
                 {
-                    // O serviço já deve ter logado o erro, avise o usuário.
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
+                    await Shell.Current.DisplayAlert("Erro", "Não foi possível recuperar os dados do usuário logado.", "OK");
                 }
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
             }
         }
 
-        [RelayCommand]
-        private async Task CadastrarBarbeiroAsync()
-        {
-            // 1. Validação Básica (Opcional, mas recomendado)
-            if (string.IsNullOrWhiteSpace(Nomebarbeiro) || string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Senha))
-            {
-                await Application.Current.MainPage.DisplayAlert("Atenção", "Preencha todos os campos obrigatórios.", "OK");
-                return;
-            }
+        //[RelayCommand]
+        //private async Task CadastrarClienteAsync()
+        //{
+        //    if(string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(Senhahash))
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Atenção", "Preencha todos os campos obrigatórios.", "OK");
+        //        return;
+        //    }
 
-            try
-            {
-                // 2. Cria o objeto usando os dados DAS PROPRIEDADES DA VIEWMODEL
-                var barbeiroParaCadastrar = new Barbeiro
-                {
+        //    try
+        //    {
+        //        var clienteParaCadastrar = new UserCreate
+        //        {
+        //            Nome = this.Nome,
+        //            Email = this.Email,
+        //            SenhaHash = this.Senhahash,
+        //            Telefone = this.Telefone,
+        //            IdPessoaTipo = TipoUsuario.Cliente
+        //        };
+
+        //        bool sucesso = await _apiservices.CadastrarClienteAsync(clienteParaCadastrar);
+        //        if (sucesso)
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Sucesso", "Cliente cadastrado com sucesso!", "OK");
+        //            LimparCampos(); // Método auxiliar para limpar a tela
+        //            await Shell.Current.GoToAsync(nameof(pgLoginBarbearia));
+        //        }
+        //        else
+        //        {
+        //            // O serviço já deve ter logado o erro, avise o usuário.
+        //            await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
+        //    }
+        //}
+
+        //[RelayCommand]
+        //private async Task CadastrarBarbeiroAsync()
+        //{
+        //    // 1. Validação Básica (Opcional, mas recomendado)
+        //    if (string.IsNullOrWhiteSpace(Nomebarbeiro) || string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Senha))
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Atenção", "Preencha todos os campos obrigatórios.", "OK");
+        //        return;
+        //    }
+
+        //    try
+        //    {
+        //        // 2. Cria o objeto usando os dados DAS PROPRIEDADES DA VIEWMODEL
+        //        var barbeiroParaCadastrar = new Barbeiro
+        //        {
                     
-                    IdBarbeiro = this.idbarbeiro,
-                    NomeBarbeiro = this.Nomebarbeiro, // Pega o valor da propriedade da classe
-                    Ativo = this.Ativo,
-                    Login = this.Login,
-                    Senha = this.Senha,
-                    IdPessoaTipo = this.tipoUsuarioSelecionado
+        //            IdBarbeiro = this.idbarbeiro,
+        //            NomeBarbeiro = this.Nomebarbeiro, // Pega o valor da propriedade da classe
+        //            Ativo = this.Ativo,
+        //            Login = this.Login,
+        //            Senha = this.Senha,
+        //            IdPessoaTipo = this.tipoUsuarioSelecionado
 
-                };
+        //        };
 
-                if (tipoUsuarioSelecionado == TipoUsuario.Cliente)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Atenção", "Nessa tela só é possível cadastrar usuários do tipo 'Admin' e 'Barbeiro'.", "OK");
-                    return;
-                }
+        //        if (tipoUsuarioSelecionado == TipoUsuario.Cliente)
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Atenção", "Nessa tela só é possível cadastrar usuários do tipo 'Admin' e 'Barbeiro'.", "OK");
+        //            return;
+        //        }
 
-                // 3. Envia o objeto preenchido para o serviço
-                bool sucesso = await _apiservices.CadastrarBarbeiroAsync(barbeiroParaCadastrar);
+        //        // 3. Envia o objeto preenchido para o serviço
+        //        bool sucesso = await _apiservices.CadastrarBarbeiroAsync(barbeiroParaCadastrar);
 
-                if (sucesso)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Barbeiro cadastrado com sucesso!", "OK");
-                    LimparCampos(); // Método auxiliar para limpar a tela
-                    await Shell.Current.GoToAsync(nameof(pgPrincipal));
-                }
-                else
-                {
-                    // O serviço já deve ter logado o erro, avise o usuário.
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
-            }
-        }
+        //        if (sucesso)
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Sucesso", "Barbeiro cadastrado com sucesso!", "OK");
+        //            LimparCampos(); // Método auxiliar para limpar a tela
+        //            await Shell.Current.GoToAsync(nameof(pgPrincipal));
+        //        }
+        //        else
+        //        {
+        //            // O serviço já deve ter logado o erro, avise o usuário.
+        //            await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
+        //    }
+        //}
 
         // Método para limpar os campos após o cadastro
         private void LimparCampos()
@@ -200,38 +239,38 @@ namespace BarbeariaMatutosApp.ViewModels
             Ativo = true; // Reseta para o padrão
         }
 
-        [RelayCommand]
-        private async Task AlterarCadastroBarbeiro()
-        {
-            try 
-            {
-                var alterarBarbeiro = new Barbeiro
-                {
-                    IdBarbeiro = this.idbarbeiro,
-                    NomeBarbeiro = this.Nomebarbeiro,
-                    Login = this.Login,
-                    Ativo = this.Ativo,
-                    Senha = this.Senha,
-                    IdPessoaTipo = this.tipoUsuarioSelecionado
-                };
-                bool sucesso = await _apiservices.AlterarBarbeiroAsync(alterarBarbeiro);
+        //[RelayCommand]
+        //private async Task AlterarCadastroBarbeiro()
+        //{
+        //    try 
+        //    {
+        //        var alterarBarbeiro = new Barbeiro
+        //        {
+        //            IdBarbeiro = this.idbarbeiro,
+        //            NomeBarbeiro = this.Nomebarbeiro,
+        //            Login = this.Login,
+        //            Ativo = this.Ativo,
+        //            Senha = this.Senha,
+        //            IdPessoaTipo = this.tipoUsuarioSelecionado
+        //        };
+        //        bool sucesso = await _apiservices.AlterarBarbeiroAsync(alterarBarbeiro);
 
-                if (sucesso)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Alteração realizada com sucesso!", "OK");
-                    LimparCampos(); // Método auxiliar para limpar a tela
-                    await Shell.Current.GoToAsync(nameof(pgPrincipal));
-                }
-                else
-                {
-                    // O serviço já deve ter logado o erro, avise o usuário.
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
-                }
-            }
-            catch(Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
-            }
-        }
+        //        if (sucesso)
+        //        {
+        //            await Application.Current.MainPage.DisplayAlert("Sucesso", "Alteração realizada com sucesso!", "OK");
+        //            LimparCampos(); // Método auxiliar para limpar a tela
+        //            await Shell.Current.GoToAsync(nameof(pgPrincipal));
+        //        }
+        //        else
+        //        {
+        //            // O serviço já deve ter logado o erro, avise o usuário.
+        //            await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível realizar o cadastro. Verifique os dados.", "OK");
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
+        //    }
+        //}
     }
 }

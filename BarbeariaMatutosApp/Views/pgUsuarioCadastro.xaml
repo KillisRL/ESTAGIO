@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarbeariaMatutosApp.Views.pgUsuarioCadastro"
              Title="Crie sua Conta"
-             BackgroundColor="#1E1E1E"
-             HeightRequest="900"
-             WidthRequest="400">
+             BackgroundColor="#1E1E1E">
     <ContentPage.Resources>
         <Style x:Key="FormLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="#E0E0E0"/>

@@ -8,7 +8,7 @@ namespace BarbeariaMatutosApp.Views;
 
 public partial class pgUsuarioCadastro : ContentPage
 {
-    public pgUsuarioCadastro(UsuariosViewModel usuarios)
+    public pgUsuarioCadastro(PerfilClienteViewModel usuarios)
 	{
 
         InitializeComponent();
