@@ -126,7 +126,7 @@ namespace BarbeariaMatutosApp.Services
                 return false;
             }
         }
-        public async Task<bool> CadastrarBarbeiroAsync(Barbeiro barbeiro)
+        public async Task<bool> CadastrarBarbeiroAsync(BarbeiroCreate barbeiro)
         {
             try
             {
@@ -246,6 +246,23 @@ namespace BarbeariaMatutosApp.Services
             {
                 string apiUrl = $"User/alterar/barbeiro";
                 var response = await _httpClient.PutAsJsonAsync(apiUrl, barbeiroParaAlterar);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                // É uma boa prática logar o erro para ajudar na depuração
+                Console.WriteLine($"Erro ao alterar barbeiro: {ex.Message}");
+                // Se houve uma exceção (ex: erro de rede), retorna false
+                return false;
+            }
+        }
+
+        public async Task<bool> AlterarClienteAsync(Users clienteParaAlterar)
+        {
+            try
+            {
+                string apiUrl = $"User/alterar/cliente";
+                var response = await _httpClient.PutAsJsonAsync(apiUrl, clienteParaAlterar);
                 return response.IsSuccessStatusCode;
             }
             catch (Exception ex)

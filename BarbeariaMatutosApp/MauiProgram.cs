@@ -40,8 +40,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<pgConsultarAgendamento>();
         builder.Services.AddTransient<pgPrincipal>();
         builder.Services.AddTransient<pgLoginBarbeiro>();
+        builder.Services.AddTransient<pgLoginBarbearia>();
         builder.Services.AddTransient<pgConsultarServicos>();
         builder.Services.AddTransient<pgCadastrarBarbeiro>();
+        builder.Services.AddTransient<pgConfiguracoes>();
+
 
 
 

@@ -18,14 +18,15 @@ namespace BarbeariaMatutosApp.ViewModels
 
         private readonly ApiServices _apiservices;
 
-        //CONTROLE DE STATUS DA TELA QUANDO FOR ALTERAÇÃO E CRIAÇÃO 
+        //CONTROLE DE STATUS DA TELA QUANDO FOR ALTERAÇÃO E CRIAÇÃO
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(TituloPagina))]
         [NotifyPropertyChangedFor(nameof(NomeBotaoAcao))]
         private AcaoTela _acaoTela;
 
-        public string TituloPagina => _acaoTela == AcaoTela.Cadastro
-       
+        //propriedade para receber se é alteração ou cadastro para mudar o nome da tela
+        public string TituloPagina => AcaoTela == AcaoTela.Cadastro ? "Novo Cliente" : "Editar Perfil";
+        public string NomeBotaoAcao => AcaoTela == AcaoTela.Cadastro ? "Cadastrar" : "Salvar Alterações";
 
 
         //PROPRIEDADES DA TELA PARA OS CLIENTES
@@ -36,11 +37,6 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty] private string senhahash;
         [ObservableProperty] private TipoUsuario _tipoUsuario;
 
-
-
-        //Tipo de Usuário que será identificado.
-        [ObservableProperty]
-        private string usuarioTipo;
 
         [ObservableProperty] private Users? _clienteRecebido;
         
@@ -55,19 +51,36 @@ namespace BarbeariaMatutosApp.ViewModels
         {
             if (value is not null)
             {
+
+                AcaoTela = AcaoTela.Alteracao;
+
                 // Preenche campos especificamente para Barbeiro
-                idUsuario = value.IDUsuario;
-                nome = value.Nome;
-                senhahash = value.SenhaHash;
-                telefone = value.Telefone;
-                TipoUsuario = value.IdPessoaTipo;
-                email = value.Email;
+                IdUsuario = value.IDUsuario;   // <--- Corrigido (era idUsuario)
+                Nome = value.Nome;             // <--- Corrigido (era nome)
+                Senhahash = value.SenhaHash;   // <--- Corrigido
+                Telefone = value.Telefone;     // <--- Corrigido
+                TipoUsuario = value.IdPessoaTipo; // <--- Corrigido
+                Email = value.Email;
                 // Senha geralmente não se preenche por segurança
+            }
+            else
+            {
+                ConfigurarModoCadastro();
             }
         }
 
+        private void ConfigurarModoCadastro()
+        {
+            AcaoTela = AcaoTela.Cadastro;
+            Nome = string.Empty;
+            Email = string.Empty;
+            Telefone = string.Empty;
+            Senhahash = string.Empty;
+            TipoUsuario = TipoUsuario.Cliente;
+        }
+
         [RelayCommand]
-        private async Task CadastrarClienteAsync()
+        private async Task SalvarAsync()
         {
             if (string.IsNullOrEmpty(Nome) || string.IsNullOrEmpty(Senhahash))
             {
@@ -75,6 +88,26 @@ namespace BarbeariaMatutosApp.ViewModels
                 return;
             }
 
+            if(AcaoTela == AcaoTela.Alteracao)
+            {
+                // Pede confirmação ao usuário
+                bool confirmar = await Shell.Current.DisplayAlert("Confirmar Cancelamento",
+                    $"Tem certeza que deseja realizar a alteração no seu perfil?",
+                    "Sim", "Não");
+                if (!confirmar)
+                    return;
+                await ExecutarAlteracao();
+            }
+            else
+            {
+
+
+                await ExecutarCadastro();
+            }
+        }
+
+        private async Task ExecutarCadastro()
+        {
             try
             {
                 var clienteParaCadastrar = new UserCreate
@@ -99,6 +132,37 @@ namespace BarbeariaMatutosApp.ViewModels
                 }
             }
             catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
+            }
+        }
+
+
+        private async Task ExecutarAlteracao()
+        {
+            try
+            {
+                var clienteParaAlterar = new Users
+                {
+                    IDUsuario = this.idUsuario,
+                    Nome = this.Nome,
+                    Email = this.Email,
+                    SenhaHash = this.Senhahash,
+                    Telefone = this.Telefone,
+                    IdPessoaTipo = TipoUsuario.Cliente
+                };
+                bool sucesso = await _apiservices.AlterarClienteAsync(clienteParaAlterar);
+
+                if (sucesso) {
+                    await Application.Current.MainPage.DisplayAlert("Sucesso", "Cliente Alterado com Sucesso!", "OK");
+                    await Shell.Current.GoToAsync(nameof(pgConfiguracoes));
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Erro Crítico", "Não foi possível realizar a alteração do seu perfil", "OK");
+                }
+            }
+            catch(Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Erro Crítico", $"Falha de comunicação: {ex.Message}", "OK");
             }

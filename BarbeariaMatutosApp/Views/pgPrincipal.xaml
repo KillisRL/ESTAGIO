@@ -5,6 +5,12 @@
              x:Class="BarbeariaMatutosApp.Views.pgPrincipal"
              xmlns:views="clr-namespace:BarbeariaMatutosApp.Views"
              Title="Barbearia Matutos" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Sair"
+                     Order="Secondary" 
+                     Priority="1"
+                     Command="{Binding FazerLogoutCommand}" />
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout Spacing="20" Padding="30">
         <HorizontalStackLayout HorizontalOptions="Start">
             <Label Text="{Binding Nome, StringFormat='Bem-Vindo: {0}'}"
@@ -34,6 +40,6 @@
                 IsVisible="{Binding IsAdminVisible}"
                 BackgroundColor="DarkRed" Command="{Binding AbrirViewCommand}"
                 CommandParameter="{x:Type TypeName=views:pgCadastrarBarbeiro}" />
-
+       
     </VerticalStackLayout>
 </ContentPage>

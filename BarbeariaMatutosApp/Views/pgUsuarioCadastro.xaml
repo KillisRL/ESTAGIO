@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BarbeariaMatutosApp.Views.pgUsuarioCadastro"
-             Title="Crie sua Conta"
              BackgroundColor="#1E1E1E">
     <ContentPage.Resources>
         <Style x:Key="FormLabelStyle" TargetType="Label">
@@ -23,7 +22,7 @@
         <VerticalStackLayout Padding="30" Spacing="5" VerticalOptions="Center">
 
             <Label 
-                Text="Criar Conta"
+                Text="{Binding TituloPagina}"
                 FontSize="32"
                 FontAttributes="Bold"
                 TextColor="White"
@@ -54,8 +53,8 @@
                    IsPassword="True" 
                    Style="{StaticResource FormEntryStyle}"/>
 
-            <Button Text="Cadastrar"
-                    Command="{Binding CadastrarClienteCommand}"
+            <Button Text="{Binding NomeBotaoAcao}"
+                    Command="{Binding SalvarCommand}"
                     BackgroundColor="#007bff" 
                     TextColor="White"
                     FontAttributes="Bold"
