@@ -12,10 +12,21 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace BarbeariaMatutosApp.ViewModels
 {
+    [QueryProperty(nameof(BarbeiroRecebido), "BarbeiroParaEditar")]
     public partial class PerfilBarbeiroViewModel : BaseViewModel
     {
         //instacia da nossa API
         private readonly ApiServices _apiservices;
+
+        //CONTROLE DE STATUS DA TELA QUANDO FOR ALTERAÇÃO E CRIAÇÃO
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(TituloPagina))]
+        [NotifyPropertyChangedFor(nameof(NomeBotaoAcao))]
+        private AcaoTela _acaoTela;
+
+        //propriedade para receber se é alteração ou cadastro para mudar o nome da tela
+        public string TituloPagina => AcaoTela == AcaoTela.Cadastro ? "Novo Barbeiro" : "Editar Perfil";
+        public string NomeBotaoAcao => AcaoTela == AcaoTela.Cadastro ? "Cadastrar" : "Salvar Alterações";
 
         // Propriedades ligadas à tela (XAML PARA BARBEIRO)
         [ObservableProperty] private int idbarbeiro;
@@ -23,84 +34,102 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty] private bool ativo;
         [ObservableProperty] private string login;
         [ObservableProperty] private string senha;
-        // Adicione a propriedade para o tipo de pessoa, se necessário
-        [ObservableProperty] private TipoUsuario tipoUsuarioSelecionado; // Valor padrão, por exemplo
+        [ObservableProperty] private TipoUsuario _tipoUsuario;
 
+        [ObservableProperty] private TipoUsuario tipoUsuarioSelecionado;
+        //Objeto populato pelos dados enviados pela tela passada
+        [ObservableProperty] private Barbeiro? _barbeiroRecebido;
+
+        //serve para identificar os usuário disponíveis em nosso sistema
         public ObservableCollection<TipoUsuario> TiposUsuarioDisponiveis { get; }
-
-        //usuario que será usado para encontrar o tipo
-        [ObservableProperty]
-        private string usuarioTipo;
 
         public PerfilBarbeiroViewModel(ApiServices apiServices)
         {
             // Injeção de dependência correta
             _apiservices = apiServices;
-            // Inicializa como ativo por padrão, se fizer sentido
+            //carrega por default o campo como verdadeiro
             Ativo = true;
 
-            // Inicializa a lista de opções com os valores do enum
             TiposUsuarioDisponiveis = new ObservableCollection<TipoUsuario>(Enum.GetValues(typeof(TipoUsuario)).Cast<TipoUsuario>());
 
-            // Define um valor padrão para a seleção, por exemplo, Barbeiro
-            tipoUsuarioSelecionado = TipoUsuario.Barbeiro;
+            if (AcaoTela == AcaoTela.Cadastro)
+            {
+                TipoUsuarioSelecionado = TipoUsuario.Barbeiro;
+            }
 
-            //SessaoUsuarioService.OnSessaoChanged += CarregarDadosUsuario;
         }
-        //private void CarregarDadosUsuario()
-        //{
-        //    var usuario = SessaoUsuarioService.Usuariologado;
-        //    var barbeiro = SessaoUsuarioService.BarbeiroLogado;
 
-        //    bool isAdmin = false;
-        //    bool isBarbeiro = false;
-        //    bool isCliente = false;
+        partial void OnBarbeiroRecebidoChanged(Barbeiro? value)
+        {
+            if(value is not null)
+            {
+                AcaoTela = AcaoTela.Alteracao;
 
-        //    if (usuario != null)
-        //    {
-        //        nome = usuario.Nome;
-        //        idUsuario = usuario.IDUsuario;
-        //        usuarioTipo = usuario.IdPessoaTipo.ToString();
-        //        isCliente = usuario.IdPessoaTipo == TipoUsuario.Cliente;
-        //    }
+                // Preenche campos especificamente para Barbeiro
+                Idbarbeiro = value.IdBarbeiro;
+                Nomebarbeiro = value.NomeBarbeiro;
+                Ativo = value.Ativo.Value;        
+                Login = value.Login;  
+                Senha = value.Senha;     
+                TipoUsuario = value.IdPessoaTipo; 
+            }
+            else
+            {
+                ConfigurarModoCadastro();
+            }
+        }
 
-        //    else if (barbeiro != null)
-        //    {
-        //        nome = barbeiro.NomeBarbeiro;
-        //        idUsuario = barbeiro.IdBarbeiro;
-        //        usuarioTipo = barbeiro.IdPessoaTipo.ToString();
+        private void ConfigurarModoCadastro()
+        {
+            AcaoTela = AcaoTela.Cadastro;
+            Nomebarbeiro = string.Empty;
+            Ativo = true;
+            Login = string.Empty;
+            Senha = string.Empty;
+            TipoUsuario = TipoUsuario.Barbeiro;
+        }
 
-        //        isAdmin = barbeiro.IdPessoaTipo == TipoUsuario.Admin;
-        //        isBarbeiro = barbeiro.IdPessoaTipo == TipoUsuario.Barbeiro;
-        //    }
-        //}
 
         [RelayCommand]
-        private async Task CadastrarBarbeiroAsync()
+        private async Task SalvarAsync()
         {
-            // 1. Validação Básica (Opcional, mas recomendado)
             if (string.IsNullOrWhiteSpace(Nomebarbeiro) || string.IsNullOrWhiteSpace(Login) || string.IsNullOrWhiteSpace(Senha))
             {
                 await Application.Current.MainPage.DisplayAlert("Atenção", "Preencha todos os campos obrigatórios.", "OK");
                 return;
             }
+            if(AcaoTela == AcaoTela.Alteracao)
+            {
+                AlterarCadastroBarbeiro();
+            }
 
+            else
+            {
+                CadastrarBarbeiroAsync();
+            }
+
+        }
+
+
+
+        [RelayCommand]
+        private async Task CadastrarBarbeiroAsync()
+        {
             try
             {
                 // 2. Cria o objeto usando os dados DAS PROPRIEDADES DA VIEWMODEL
-                var barbeiroParaCadastrar = new Barbeiro
+                var barbeiroParaCadastrar = new BarbeiroCreate
                 {
 
-                    IdBarbeiro = this.idbarbeiro,
                     NomeBarbeiro = this.Nomebarbeiro, // Pega o valor da propriedade da classe
                     Ativo = this.Ativo,
                     Login = this.Login,
                     Senha = this.Senha,
-                    IdPessoaTipo = this.tipoUsuarioSelecionado
+                    IdPessoaTipo = this.TipoUsuarioSelecionado
 
                 };
 
-                if (tipoUsuarioSelecionado == TipoUsuario.Cliente)
+                if (TipoUsuario == TipoUsuario.Cliente)
                 {
                     await Application.Current.MainPage.DisplayAlert("Atenção", "Nessa tela só é possível cadastrar usuários do tipo 'Admin' e 'Barbeiro'.", "OK");
                     return;
@@ -148,7 +177,7 @@ namespace BarbeariaMatutosApp.ViewModels
                     Login = this.Login,
                     Ativo = this.Ativo,
                     Senha = this.Senha,
-                    IdPessoaTipo = this.tipoUsuarioSelecionado
+                    IdPessoaTipo = this.TipoUsuario
                 };
                 bool sucesso = await _apiservices.AlterarBarbeiroAsync(alterarBarbeiro);
 

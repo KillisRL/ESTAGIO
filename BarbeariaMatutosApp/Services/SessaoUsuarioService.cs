@@ -31,5 +31,13 @@ namespace BarbeariaMatutosApp.Services
             BarbeiroLogado = null;
             OnSessaoChanged?.Invoke(); // Dispara o evento de mudança
         }
+
+        public static void Logout()
+        {
+            Usuariologado = null;
+            BarbeiroLogado = null;
+        }
+
+        public static bool IsLogado => Usuariologado != null || BarbeiroLogado != null;
     }
 }

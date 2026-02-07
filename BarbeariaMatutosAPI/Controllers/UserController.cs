@@ -72,11 +72,10 @@ namespace BarbeariaMatutosAPI.Controllers
         }
 
         [HttpPost("cadastrar/barbeiro")]
-        public async Task<IActionResult> CreateBarbeiro(Barbeiro barbeiroCreate)
+        public async Task<IActionResult> CreateBarbeiro(BarbeiroCreate barbeiroCreate)
         {
             var barbeiro = new Barbeiro
             {
-                IdBarbeiro = barbeiroCreate.IdBarbeiro,
                 NomeBarbeiro = barbeiroCreate.NomeBarbeiro,
                 Ativo = barbeiroCreate.Ativo,
                 Login = barbeiroCreate.Login,
@@ -100,6 +99,19 @@ namespace BarbeariaMatutosAPI.Controllers
 
             // Retorna 200 OK com o objeto atualizado
             return Ok(barbeiro);
+        }
+
+
+        [HttpPut("alterar/cliente")]
+        public async Task<IActionResult> AlterarCliente([FromBody] Users users)
+        {
+            // Marca o objeto inteiro como "Modificado"
+            _db.Users.Update(users);
+
+            await _db.SaveChangesAsync();
+
+            // Retorna 200 OK com o objeto atualizado
+            return Ok(users);
         }
     }
 }

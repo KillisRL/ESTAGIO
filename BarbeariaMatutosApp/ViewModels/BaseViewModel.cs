@@ -4,6 +4,7 @@ using Microsoft.Maui.Controls;
 using System.Diagnostics;
 using UsersDomain.Entidades; // Certifique-se que TipoUsuario está aqui
 using BarbeariaMatutosApp.Services;
+using BarbeariaMatutosApp.Views;
 using CommunityToolkit.Mvvm.ComponentModel; // Para ObservableObject
 
 namespace BarbeariaMatutosApp.ViewModels
@@ -105,6 +106,25 @@ namespace BarbeariaMatutosApp.ViewModels
         {
             SessaoUsuarioService.OnSessaoChanged -= NotificarMudancaDeSessao;
             // GC.SuppressFinalize(this); // Geralmente não é necessário em classes não gerenciadas
+        }
+
+        [RelayCommand]
+        private async Task FazerLogoutAsync()
+        {
+            // 1. Pergunta de confirmação (boa prática de UX)
+            bool confirmar = await Shell.Current.DisplayAlert("Sair",
+                                                              "Deseja realmente sair do sistema?",
+                                                              "Sim", "Não");
+            if (!confirmar)
+                return;
+
+            // 2. Chama o serviço para limpar os dados
+            SessaoUsuarioService.Logout();
+
+            // 3. Navegação Crítica: Usando "//" (Absolute Routing)
+            // Isso é MUITO importante. Usar "//" limpa a pilha de navegação.
+            // O usuário não conseguirá voltar para a tela anterior apertando "Voltar".
+            await Shell.Current.GoToAsync(nameof(pgLoginBarbearia));
         }
     }
 }
