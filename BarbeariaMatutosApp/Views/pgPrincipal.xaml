@@ -40,6 +40,11 @@
                 IsVisible="{Binding IsAdminVisible}"
                 BackgroundColor="DarkRed" Command="{Binding AbrirViewCommand}"
                 CommandParameter="{x:Type TypeName=views:pgCadastrarBarbeiro}" />
-       
+
+        <Button Text="Cadastrar Serviço (Admin)"
+                IsVisible="{Binding IsAdminVisible}"
+                BackgroundColor="DarkRed"
+                Command="{Binding CadastrarServicosCommand}"/>
+
     </VerticalStackLayout>
 </ContentPage>

@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using UsersDomain.Entidades;
 using UsersInfraestrutura;
-using static UsersDomain.Entidades.SituacaoAgendamentoEnum;
 namespace BarbeariaMatutosAPI.Controllers
 {
 

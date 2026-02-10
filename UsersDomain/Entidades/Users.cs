@@ -15,7 +15,7 @@ namespace UsersDomain.Entidades
         public string? SenhaHash { get; set; }
 
         [Required]
-        [Column("IdPessoaTipo")] // Mapeia explicitamente para a coluna do banco
+        [Column("IdPessoaTipo")] 
         public TipoUsuario IdPessoaTipo { get; set; }
     }
 }

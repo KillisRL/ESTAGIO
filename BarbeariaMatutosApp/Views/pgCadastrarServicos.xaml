@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BarbeariaMatutosApp.Views.pgCadastrarServicos"
+             Title="pgCadastrarServicos">
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="30">
+
+            <Label Text="Cadastrar Novo Serviço"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Descrição do Serviço" FontAttributes="Bold" />
+                <Entry Text="{Binding DescServico}" 
+                       Placeholder="Ex: Corte Degradê" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Duração Estimada" FontAttributes="Bold" />
+                <Entry Text="{Binding DuracaoServico}" 
+                       Placeholder="Ex: 45 min" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Valor (R$)" FontAttributes="Bold" />
+                <Entry Text="{Binding ValorServico}" 
+                       Placeholder="0,00"
+                       Keyboard="Numeric" />
+            </VerticalStackLayout>
+
+            <Button Text="Salvar Serviço"
+                    Command="{Binding CadastrarServicosCommand}"
+                    TextColor="White"
+                    HeightRequest="50"
+                    CornerRadius="10"
+                    Margin="0,20,0,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
