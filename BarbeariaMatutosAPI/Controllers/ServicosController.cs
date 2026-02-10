@@ -17,11 +17,28 @@ namespace BarbeariaMatutosAPI.Controllers
         {
             this._db = dBContext;
         }
-        [HttpGet]
+        [HttpGet("consultar")]
         public IActionResult Get()
         {
-            var servicos = _db.Services.ToList();
+            var servicos = _db.Servicos.ToList();
             return Ok(servicos);
+        }
+
+        [HttpPost("cadastrar")]
+        public async Task<IActionResult> CreateServico(Servicos servicos)
+        {
+            var Criarservicos = new Servicos
+            {
+                IdServico = servicos.IdServico,
+                DescServico = servicos.DescServico,
+                Duracao = servicos.Duracao,
+                ValorServico = servicos.ValorServico
+            };
+
+            _db.Servicos.Add(Criarservicos);
+            await _db.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }

@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
-using System.Reflection.Emit;
-using UsersDomain.Entidades;
 
 namespace UsersInfraestrutura
 {
@@ -12,7 +9,7 @@ namespace UsersInfraestrutura
 
         public DbSet<UsersDomain.Entidades.Users> Users { get; set; }
         public DbSet<UsersDomain.Entidades.Agendamento> Agendamentos { get; set; }
-        public DbSet<UsersDomain.Entidades.Servicos> Services { get; set; }
+        public DbSet<UsersDomain.Entidades.Servicos> Servicos { get; set; }
         public DbSet<UsersDomain.Entidades.Barbeiro> Barbeiros { get; set; }
         public UserDBContext(IConfiguration configuration, DbContextOptions options) : base(options)
         {

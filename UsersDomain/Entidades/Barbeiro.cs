@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UsersDomain.Entidades
 {
@@ -12,17 +7,15 @@ namespace UsersDomain.Entidades
     public class Barbeiro
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdBarbeiro { get; set; } 
-
-        public string? NomeBarbeiro { get; set; } // Coluna para o nome (baseado no script SQL original)
-        public bool? Ativo { get; set; } // Recomendado manter anuláve
-
+        public string? NomeBarbeiro { get; set; } 
+        public bool? Ativo { get; set; } 
         public string? Login { get; set; }
-
         public string? Senha { get; set; }
 
         [Required]
-        [Column("IdPessoaTipo")] // Mapeia explicitamente para a coluna do banco
+        [Column("IdPessoaTipo")] 
         public TipoUsuario IdPessoaTipo { get; set; }
     }
 }

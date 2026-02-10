@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UsersDomain.Entidades
 {
@@ -12,6 +7,7 @@ namespace UsersDomain.Entidades
     public class Servicos
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdServico { get; set; }
         public string? DescServico { get; set; }
         public string? Duracao { get; set; }

@@ -91,5 +91,11 @@ namespace BarbeariaMatutosApp.ViewModels
         {
            await Shell.Current.GoToAsync(nameof(pgConsultarServicos));
         }
+
+        [RelayCommand]
+        private async Task CadastrarServicos()
+        {
+            await Shell.Current.GoToAsync(nameof(pgCadastrarServicos));
+        }
     }
 }

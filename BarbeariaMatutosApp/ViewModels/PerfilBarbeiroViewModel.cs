@@ -1,14 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
+﻿using BarbeariaMatutosApp.Services;
 using BarbeariaMatutosApp.Views;
-using BarbeariaMatutosApp.Services;
-using System.Threading.Tasks;
-using UsersDomain.Entidades;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using UsersDomain.Entidades;
 
 namespace BarbeariaMatutosApp.ViewModels
 {

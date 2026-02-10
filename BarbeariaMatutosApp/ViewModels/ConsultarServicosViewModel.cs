@@ -1,14 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using BarbeariaMatutosApp.Services;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UsersDomain.Entidades;
-using BarbeariaMatutosApp.Views;
-using System.Diagnostics;
+﻿using BarbeariaMatutosApp.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using UsersDomain.Entidades;
 
 namespace BarbeariaMatutosApp.ViewModels
 {
@@ -16,7 +11,6 @@ namespace BarbeariaMatutosApp.ViewModels
     public partial class ConsultarServicosViewModel : BaseViewModel
     {
         private readonly ApiServices _apiServices;
-
 
         [ObservableProperty]
         private ObservableCollection<AgendamentoDTO> agendamentos;

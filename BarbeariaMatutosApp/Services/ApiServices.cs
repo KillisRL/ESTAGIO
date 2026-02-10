@@ -29,7 +29,7 @@ namespace BarbeariaMatutosApp.Services
 
         public async Task<List<Servicos>> GetServicosAsync()
         {
-            return await _httpClient.GetFromJsonAsync<List<Servicos>>("api/Servicos");
+            return await _httpClient.GetFromJsonAsync<List<Servicos>>("api/Servicos/consultar");
         }
 
         public async Task<List<Barbeiro>> GetBarbeirosAsync()
@@ -172,6 +172,29 @@ namespace BarbeariaMatutosApp.Services
             catch (Exception ex)
             {
                 Debug.WriteLine($"Exceção ao cadastrar barbeiro: {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> CadastrarServicosAsync(Servicos servicos)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsJsonAsync("api/Servicos/cadastrar", servicos);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    var errorMessage = await response.Content.ReadAsStringAsync();
+                    Debug.WriteLine($"Falha ao cadastrar serviço. Status: {response.StatusCode}, Erro: {errorMessage}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Exceção ao cadastrar serviço: {ex.Message}");
                 return false;
             }
         }

@@ -13,7 +13,7 @@
                     <Label Text="Login" FontSize="40" HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold" Margin="0,0,0,10"/>
 
                     <Label Text="Login:" TextColor="#E0E0E0" FontSize="16"/>
-                    <Entry Placeholder="E-mail"
+                    <Entry Placeholder="Usuário"
                        Text="{Binding Login}"
                        BackgroundColor="#333333" TextColor="White"/>
 
