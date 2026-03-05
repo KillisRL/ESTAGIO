@@ -1,0 +1,69 @@
+-- -----------------------------------------------------
+-- Tabela tblAgendamentoSituacao
+-- -----------------------------------------------------
+CREATE TABLE tblAgendamentoSituacao (
+    IdSituacao INT NOT NULL,
+    DescSitucao VARCHAR(50) NULL,
+    PRIMARY KEY (IdSituacao)
+);
+
+-- -----------------------------------------------------
+-- Tabela tblBarbeiro
+-- -----------------------------------------------------
+CREATE TABLE tblBarbeiro (
+    IdBarbeiro INT NOT NULL,
+    NomeBarbeiro VARCHAR(200) NULL,
+    Ativo TINYINT(1) DEFAULT 1, -- 1 para Sim, 0 para Não
+    PRIMARY KEY (IdBarbeiro)
+);
+
+-- -----------------------------------------------------
+-- Tabela tblServicos
+-- -----------------------------------------------------
+CREATE TABLE tblServicos (
+    IdServico INT NOT NULL,
+    DescServico VARCHAR(200) NULL,
+    Duracao VARCHAR(100) NULL,
+    ValorServico DECIMAL(7, 2) NULL,
+    PRIMARY KEY (IdServico)
+);
+
+-- -----------------------------------------------------
+-- Tabela tblUsuario
+-- -----------------------------------------------------
+CREATE TABLE tblUsuario (
+    IDUsuario INT NOT NULL AUTO_INCREMENT,
+    Nome VARCHAR(200) NOT NULL,
+    Email VARCHAR(200) NOT NULL UNIQUE,
+    SenhaHash VARCHAR(255) NOT NULL,
+    Telefone VARCHAR(20) NOT NULL,
+    PRIMARY KEY (IDUsuario)
+);
+
+-- -----------------------------------------------------
+-- Tabela tblAgendamento
+-- -----------------------------------------------------
+CREATE TABLE tblAgendamento (
+    IdAgendamento INT NOT NULL AUTO_INCREMENT,
+    IdBarbeiro INT NOT NULL,
+    IdServico INT NOT NULL,
+    DataHora DATETIME NULL,
+    IdSituacao INT NOT NULL DEFAULT 2,
+    IDUsuario INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (IdAgendamento)
+);
+
+-- -----------------------------------------------------
+-- Restrições e Chaves Estrangeiras (Foreign Keys)
+-- -----------------------------------------------------
+ALTER TABLE tblAgendamento ADD CONSTRAINT FK_Agendamento_Barbeiro
+    FOREIGN KEY (IdBarbeiro) REFERENCES tblBarbeiro (IdBarbeiro);
+
+ALTER TABLE tblAgendamento ADD CONSTRAINT FK_Agendamento_Servicos
+    FOREIGN KEY (IdServico) REFERENCES tblServicos (IdServico);
+
+ALTER TABLE tblAgendamento ADD CONSTRAINT FK_Agendamento_Situacao
+    FOREIGN KEY (IdSituacao) REFERENCES tblAgendamentoSituacao (IdSituacao);
+
+ALTER TABLE tblAgendamento ADD CONSTRAINT FK_Agendamento_Usuario
+    FOREIGN KEY (IDUsuario) REFERENCES tblUsuario (IDUsuario);
