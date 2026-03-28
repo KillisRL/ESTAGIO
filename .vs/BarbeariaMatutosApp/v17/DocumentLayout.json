@@ -1,22 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\",
+  "WorkspaceRootPath": "C:\\Users\\Luiz Felipe\\ESTAGIO\\DEVELOP\\ESTAGIO\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\users\\unifafibe\\desktop\\luizadasuelin\\estagio\\barbeariamatutosapp\\barbeariamatutosapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\barbeariamatutosapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\users\\luiz felipe\\estagio\\develop\\estagio\\barbeariamatutosapp\\viewmodels\\finalizaragendamentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\viewmodels\\finalizaragendamentoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\users\\unifafibe\\desktop\\luizadasuelin\\estagio\\barbeariamatutosapp\\services\\apiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\services\\apiservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\users\\unifafibe\\desktop\\luizadasuelin\\estagio\\barbeariamatutosapp\\viewmodels\\agendamentoservicoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\viewmodels\\agendamentoservicoviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\users\\unifafibe\\desktop\\luizadasuelin\\estagio\\barbeariamatutosapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|c:\\users\\luiz felipe\\estagio\\develop\\estagio\\barbeariamatutosapp\\views\\pgprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{4DC2E45D-952D-4907-BE47-5C00ED498ABB}|BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj|solutionrelative:barbeariamatutosapp\\views\\pgprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,53 +33,34 @@
               "Name": "ST:0:0:{a0c5197d-0ac7-4b63-97cd-8872a789d233}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "BarbeariaMatutosApp.csproj",
-              "DocumentMoniker": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj",
-              "ToolTip": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj",
-              "RelativeToolTip": "BarbeariaMatutosApp\\BarbeariaMatutosApp.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-02-10T00:26:12.241Z",
+              "Title": "FinalizarAgendamentoViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Luiz Felipe\\ESTAGIO\\DEVELOP\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\FinalizarAgendamentoViewModel.cs",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\FinalizarAgendamentoViewModel.cs",
+              "ToolTip": "C:\\Users\\Luiz Felipe\\ESTAGIO\\DEVELOP\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\FinalizarAgendamentoViewModel.cs",
+              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\FinalizarAgendamentoViewModel.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAwwGQAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T00:33:14.97Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AgendamentoServicoViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\AgendamentoServicoViewModel.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\ViewModels\\AgendamentoServicoViewModel.cs",
-              "ToolTip": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\ViewModels\\AgendamentoServicoViewModel.cs",
-              "RelativeToolTip": "BarbeariaMatutosApp\\ViewModels\\AgendamentoServicoViewModel.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowDcAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T23:56:05.341Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\App.xaml",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\App.xaml",
-              "ToolTip": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\App.xaml",
-              "RelativeToolTip": "BarbeariaMatutosApp\\App.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-02-09T23:55:20.301Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApiServices.cs",
-              "DocumentMoniker": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "ToolTip": "C:\\Users\\Unifafibe\\Desktop\\LuizadasUelin\\ESTAGIO\\BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "RelativeToolTip": "BarbeariaMatutosApp\\Services\\ApiServices.cs",
-              "ViewState": "AgIAAFsAAAAAAAAAAAAhwGMAAABLAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-09T23:42:56.838Z"
+              "Title": "pgPrincipal.xaml",
+              "DocumentMoniker": "C:\\Users\\Luiz Felipe\\ESTAGIO\\DEVELOP\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "RelativeDocumentMoniker": "BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "ToolTip": "C:\\Users\\Luiz Felipe\\ESTAGIO\\DEVELOP\\ESTAGIO\\BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "RelativeToolTip": "BarbeariaMatutosApp\\Views\\pgPrincipal.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-03-27T23:47:11.523Z",
+              "EditorCaption": ""
             }
           ]
         }

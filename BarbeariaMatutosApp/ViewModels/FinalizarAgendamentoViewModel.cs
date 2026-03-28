@@ -38,6 +38,9 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty]
         private bool isBusy;
 
+        [ObservableProperty]
+        private DateTime dataHoraFim;
+
         public FinalizarAgendamentoViewModel(ApiServices apiService)
         {
             CarregarDadosUsuario();
@@ -97,6 +100,15 @@ namespace BarbeariaMatutosApp.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Atenção!", "Apenas perfis de Clientes podem realizar agendamentos pelo aplicativo.", "OK");
                 return;
             }
+
+            DateTime dataHoraAgendamento = DataSelecionada.Date + HoraSelecionada;
+
+            if (dataHoraAgendamento < DateTime.Now)
+            {
+                await Application.Current.MainPage.DisplayAlert("Ateção", "Não é possível agendar em horário menor que o atual.", "OK");
+                return;            
+            }
+
             try
             {
                 IsBusy = true; // Ativa o indicador de "carregando"
@@ -106,20 +118,18 @@ namespace BarbeariaMatutosApp.ViewModels
                 {
                     IdServico = Servico.IdServico,
                     IdBarbeiro = BarbeiroSelecionado.IdBarbeiro,
-                    // Combina a data selecionada no DatePicker com a hora do TimePicker
                     DataHora = DataSelecionada.Date + HoraSelecionada,
-                    IdSituacao = agendamento.IdSituacao = 1,
+                    IdSituacao = 1,
                     IDUsuario = SessaoUsuarioService.Usuariologado.IDUsuario
+
                 };
                  
                 // 3. Chamar o ApiService para enviar o DTO para a API
-                bool sucesso = await _apiService.SalvarAgendamentoAsync(agendamentoRequest);
-
-
+                RespostaApi resposta = await _apiService.SalvarAgendamentoAsync(agendamentoRequest);
 
 
                 // 4. Dar feedback ao usuário e navegar
-                if (sucesso)
+                if (resposta.Sucesso)
                 {
                     await Application.Current.MainPage.DisplayAlert("Sucesso!", "Seu agendamento foi confirmado.", "OK");
                     // Volta para a página raiz da aplicação
@@ -127,7 +137,7 @@ namespace BarbeariaMatutosApp.ViewModels
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Erro", "Não foi possível completar o agendamento. Por favor, tente novamente mais tarde.", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Atenção", resposta.MensagemErro, "OK");
                 }
             }
             catch (Exception ex)

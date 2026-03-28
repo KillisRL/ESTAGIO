@@ -1,13 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using BarbeariaMatutosApp.Services;
-using System.Threading.Tasks;
 using BarbeariaMatutosApp.Views;
 using UsersDomain.Entidades;
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 
 namespace BarbeariaMatutosApp.ViewModels
@@ -100,8 +94,6 @@ namespace BarbeariaMatutosApp.ViewModels
             }
             else
             {
-
-
                 await ExecutarCadastro();
             }
         }

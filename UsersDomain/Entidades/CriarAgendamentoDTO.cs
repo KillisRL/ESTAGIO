@@ -8,5 +8,6 @@
         public DateTime DataHora { get; set; }
         public  int IdSituacao { get; set; }
         public int IDUsuario { get; set; }
+        public DateTime DataHoraFim { get; set; }
     }
 }

@@ -30,6 +30,13 @@
                        Keyboard="Numeric" />
             </VerticalStackLayout>
 
+            <VerticalStackLayout Spacing="5">
+                <Label Text="Tempo em Minutos do Serviço" FontAttributes="Bold" />
+                <Entry Text="{Binding TempoEstimadoMinutos}" 
+           Placeholder="0"
+           Keyboard="Numeric" />
+            </VerticalStackLayout>
+
             <Button Text="Salvar Serviço"
                     Command="{Binding CadastrarServicosCommand}"
                     TextColor="White"

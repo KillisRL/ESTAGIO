@@ -12,5 +12,6 @@ namespace UsersDomain.Entidades
         public string? DescServico { get; set; }
         public string? Duracao { get; set; }
         public decimal ValorServico { get; set; }
+        public int TempoEstimadoMinutos { get; set; }
     }
 }
