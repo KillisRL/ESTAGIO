@@ -32,7 +32,8 @@ namespace BarbeariaMatutosAPI.Controllers
                 IdServico = servicos.IdServico,
                 DescServico = servicos.DescServico,
                 Duracao = servicos.Duracao,
-                ValorServico = servicos.ValorServico
+                ValorServico = servicos.ValorServico,
+                TempoEstimadoMinutos = servicos.TempoEstimadoMinutos
             };
 
             _db.Servicos.Add(Criarservicos);

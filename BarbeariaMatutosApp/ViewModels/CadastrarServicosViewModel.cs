@@ -12,6 +12,7 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty] private string descServico;
         [ObservableProperty] private string duracaoServico;
         [ObservableProperty] private decimal valorServico;
+        [ObservableProperty] private int tempoEstimadoMinutos;
 
 
         private readonly ApiServices _apiServices;
@@ -24,15 +25,20 @@ namespace BarbeariaMatutosApp.ViewModels
         [RelayCommand]
         private async Task CadastrarServicosAsync()
         {
+            if(string.IsNullOrEmpty (descServico) || string.IsNullOrEmpty(duracaoServico) || valorServico == null || tempoEstimadoMinutos == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Atenção", "Por Favor preencha todos os campos", "OK");
+                return;
+            }
             try
             {
-                
+
                 var servicoParaCadastrar = new Servicos
                 {
-                    DescServico = this.descServico, 
+                    DescServico = this.descServico,
                     Duracao = this.duracaoServico,
-                    ValorServico = this.valorServico
-
+                    ValorServico = this.valorServico,
+                    TempoEstimadoMinutos = this.tempoEstimadoMinutos
 
                 };
 
@@ -63,6 +69,7 @@ namespace BarbeariaMatutosApp.ViewModels
             DescServico = string.Empty;
             DuracaoServico = string.Empty;
             ValorServico = 0;
+            TempoEstimadoMinutos = 0;
         }
     }
 }

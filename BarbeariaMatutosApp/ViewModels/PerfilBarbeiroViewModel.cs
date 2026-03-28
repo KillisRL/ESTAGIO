@@ -30,7 +30,6 @@ namespace BarbeariaMatutosApp.ViewModels
         [ObservableProperty] private string login;
         [ObservableProperty] private string senha;
         [ObservableProperty] private TipoUsuario _tipoUsuario;
-
         [ObservableProperty] private TipoUsuario tipoUsuarioSelecionado;
         //Objeto populato pelos dados enviados pela tela passada
         [ObservableProperty] private Barbeiro? _barbeiroRecebido;

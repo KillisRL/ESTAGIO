@@ -10,7 +10,7 @@ namespace BarbeariaMatutosAPI.Controllers
     public class FinalizarAgendamentoController: ControllerBase
 
     {
-        private UserDBContext _db;
+        private readonly UserDBContext _db;
         public FinalizarAgendamentoController(UserDBContext dBContext)
         {
             this._db = dBContext;
@@ -25,24 +25,47 @@ namespace BarbeariaMatutosAPI.Controllers
 
         // MÉTODO POST PROFISSIONAL
         [HttpPost]
-        public async Task<IActionResult> CriarAgendamento(CriarAgendamentoDTO request)
+        public async Task<IActionResult> Post([FromBody] CriarAgendamentoDTO request)
         {
-            if (request == null)
+            try
             {
-                return BadRequest("Dados do agendamento inválidos.");
-            }
-            var novoAgendamento = new Agendamento
-            {
-                IdBarbeiro = request.IdBarbeiro,
-                IdServico = request.IdServico,
-                DataHora = request.DataHora,
-                IdSituacao = request.IdSituacao,
-                IDUsuario = request.IDUsuario
-            };
+                // 1. A API recebe o pedido e CHAMA O SEU MÉTODO para descobrir o tempo do serviço
+                int minutos = await ConsultarTempoServico(request.IdServico);
 
-            _db.Agendamentos.Add(novoAgendamento);
-            await _db.SaveChangesAsync();
-            return CreatedAtAction(nameof(ConsultarAgendamento), new { id = novoAgendamento.IdAgendamento }, novoAgendamento);
+                // 2. A API calcula que horas o serviço vai terminar
+                DateTime dataFim = request.DataHora.AddMinutes(minutos);
+
+                // 3. A API CHAMA O SEU MÉTODO para verificar se o horário cruza com outro cliente
+                bool indisponivel = await ValidarHorarioDisponivel(request.IdBarbeiro, request.DataHora, dataFim);
+
+                // 4. A DECISÃO: Se o seu método disse que está indisponível, nós bloqueamos e avisamos o app!
+                if (indisponivel)
+                {
+                    // Isso vai fazer o seu app MAUI exibir aquele DisplayAlert de erro
+                    return BadRequest(new RespostaApi { Sucesso = false, MensagemErro = "Ops! Este horário já foi reservado por outro cliente." });
+                }
+
+                // 5. Se o método liberou (indisponivel == false), nós montamos o objeto e salvamos no banco
+                var novoAgendamento = new Agendamento
+                {
+                    IdBarbeiro = request.IdBarbeiro,
+                    IdServico = request.IdServico,
+                    DataHora = request.DataHora, // Início que veio do app
+                    DataHoraFim = dataFim,       // Fim que a API acabou de calcular
+                    IdSituacao = request.IdSituacao,
+                    IDUsuario = request.IDUsuario
+                };
+
+                _db.Agendamentos.Add(novoAgendamento);
+                await _db.SaveChangesAsync();
+
+                // Devolve o sucesso para o app MAUI mudar de tela
+                return Ok(new RespostaApi { Sucesso = true });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new RespostaApi { Sucesso = false, MensagemErro = $"Erro interno no servidor: {ex.Message}" });
+            }
         }
 
         [HttpGet("consulta")]
@@ -216,6 +239,26 @@ namespace BarbeariaMatutosAPI.Controllers
             {
                 return StatusCode(500, $"Erro interno ao buscar seus agendamentos: {ex.Message}");
             }
+        }
+
+        private async Task<int> ConsultarTempoServico(int idServico)
+        {
+            var minutos = await _db.Servicos
+                .Where(s => s.IdServico == idServico)
+                .Select(s => s.TempoEstimadoMinutos)
+                .FirstOrDefaultAsync();
+
+            return minutos > 0 ? minutos : 30;
+        }
+        private async Task<bool> ValidarHorarioDisponivel(int idBarbeiro, DateTime dataInicio, DateTime dataFim)
+        {
+            bool indiponivel = await _db.Agendamentos
+                .AnyAsync(a => a.IdBarbeiro == idBarbeiro
+                                && a.IdSituacao == 1
+                                && a.DataHora < dataFim
+                                && a.DataHoraFim > dataInicio);
+
+            return indiponivel;
         }
     }
 }

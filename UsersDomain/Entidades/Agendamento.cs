@@ -27,5 +27,6 @@ namespace UsersDomain.Entidades
 
         [ForeignKey("IdSituacao")]
         public AgendamentoSituacao? AgendamentoSituacao { get; set; }
+        public DateTime DataHoraFim { get; set; }
     }
 }

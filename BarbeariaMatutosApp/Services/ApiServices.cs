@@ -1,14 +1,18 @@
-﻿
-using System.Diagnostics;
-using System.Net.Http.Json;
+﻿using System.Diagnostics;
 using UsersDomain.Entidades;
+using System.Net.Http.Json;
+using System.Text.Json;
+using UsersDomain.Entidades;
+using UsersInfraestrutura;
 using static UsersDomain.Entidades.SituacaoAgendamentoEnum;
+using Microsoft.EntityFrameworkCore;
 
 namespace BarbeariaMatutosApp.Services
 {
     public class ApiServices
     {
         private readonly HttpClient _httpClient;
+        private readonly UserDBContext _context;
 
         private const string ApiBaseURL = "http://localhost:5125"; // Ou pegue de um arquivo de config// Ou pegue de um arquivo de config
         public ApiServices()
@@ -24,6 +28,7 @@ namespace BarbeariaMatutosApp.Services
             _httpClient = new HttpClient
             {
                 BaseAddress = new Uri(baseUrl)
+
             };
         }
 
@@ -109,21 +114,34 @@ namespace BarbeariaMatutosApp.Services
             // Chama o método genérico passando o status de Finalizado (ex: 3)
             return await AlterarStatusAsync(agendamentoId, (int)StatusAgendamento.Finalizado);
         }
-        public async Task<bool> SalvarAgendamentoAsync(CriarAgendamentoDTO agendamentoRequest)
+        public async Task<RespostaApi> SalvarAgendamentoAsync(CriarAgendamentoDTO agendamentoRequest)
         {
             try
             {
-                // Usa PostAsJsonAsync para serializar o objeto para JSON e enviá-lo no corpo da requisição POST
                 var response = await _httpClient.PostAsJsonAsync("api/Agendamentos", agendamentoRequest);
 
-                // Retorna true se a resposta da API foi bem-sucedida (código de status 2xx)
-                return response.IsSuccessStatusCode;
+                // Se a requisição deu 100% certo (Status 200 OK)
+                if (response.IsSuccessStatusCode)
+                {
+                    return new RespostaApi { Sucesso = true };
+                }
+                else
+                {
+                    // Se a API recusou (Status 400 Bad Request), nós lemos a mensagem de erro que ela mandou!
+                    var conteudoJson = await response.Content.ReadAsStringAsync();
+
+                    // Converte o JSON que veio da API para a nossa classe RespostaApi
+                    var opcoes = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                    var respostaErro = JsonSerializer.Deserialize<RespostaApi>(conteudoJson, opcoes);
+
+                    // Retorna o erro específico da API, ou um erro genérico caso a API tenha quebrado
+                    return respostaErro ?? new RespostaApi { Sucesso = false, MensagemErro = "Erro desconhecido ao agendar." };
+                }
             }
             catch (Exception ex)
             {
-                // Log do erro para depuração
                 Debug.WriteLine($"Erro ao salvar agendamento: {ex.Message}");
-                return false;
+                return new RespostaApi { Sucesso = false, MensagemErro = "Falha de comunicação com o servidor." };
             }
         }
         public async Task<bool> CadastrarBarbeiroAsync(BarbeiroCreate barbeiro)
@@ -296,5 +314,6 @@ namespace BarbeariaMatutosApp.Services
                 return false;
             }
         }
+
     }
 }

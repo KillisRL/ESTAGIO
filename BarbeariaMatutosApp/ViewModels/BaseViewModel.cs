@@ -119,7 +119,7 @@ namespace BarbeariaMatutosApp.ViewModels
                 return;
 
             // 2. Chama o serviço para limpar os dados
-            SessaoUsuarioService.Logout();
+            SessaoUsuarioService.EncerrarSessao();
 
             // 3. Navegação Crítica: Usando "//" (Absolute Routing)
             // Isso é MUITO importante. Usar "//" limpa a pilha de navegação.
